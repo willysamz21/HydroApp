@@ -72,84 +72,75 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        /* This is here for testing purposes and will be removed at some point. */
-        if (DEBUG)
-        	startActivity(new Intent(context, NewGrowConfigActivity.class));
-        else {
         
+        if (!login)
+        	startActivity(new Intent(context, LoginWindow.class));
         
-	        if (!login)
-	        	startActivity(new Intent(context, LoginWindow.class));
-	        
-	        PACKAGE_NAME = getApplicationContext().getPackageName();
-	        
-	        mTitle = mDrawerTitle = getTitle();
-	        mItemsTitles = getResources().getStringArray(R.array.items_array);
-	        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-	        mDrawerList = (ListView) findViewById(R.id.left_drawer);
-	
-	        // set a custom shadow that overlays the main content when the drawer opens
-	        	//mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-	        // set up the drawer's list view with items and click listener
-	        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mItemsTitles));
-	        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-	
-	        // enable ActionBar app icon to behave as action to toggle nav drawer
-	        getActionBar().setDisplayHomeAsUpEnabled(true);
-	        getActionBar().setHomeButtonEnabled(true);
-	
-	        // ActionBarDrawerToggle ties together the the proper interactions
-	        // between the sliding drawer and the action bar app icon
-	        mDrawerToggle = new ActionBarDrawerToggle(
-	                this,                  /* host Activity */
-	                mDrawerLayout,         /* DrawerLayout object */
-	                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
-	                R.string.drawer_open,  /* "open drawer" description for accessibility */
-	                R.string.drawer_close  /* "close drawer" description for accessibility */
-	                ) {
-	            public void onDrawerClosed(View view) {
-	                getActionBar().setTitle(mTitle);
-	                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-	            }
-	
-	            public void onDrawerOpened(View drawerView) {
-	                getActionBar().setTitle(mDrawerTitle);
-	                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-	            }
-	        };
-	        mDrawerLayout.setDrawerListener(mDrawerToggle);
-	        mDrawerLayout.setDrawerLockMode(1);
-	
-	        if (savedInstanceState == null) {
-	            selectItem(0);
-	        }
-	        
-	        
-	      
-	       
-	        try {
-			//	socket = new SocketIO("http://10.0.2.2:3000");
-	    //    	socket = new SocketIO("http://192.168.0.102:3000");
-	        	socket = new SocketIO();
-				c = new CustomCallback();
-			
-				c.setHandler(handler);
-			//	socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
-				socket.connect("http://10.0.2.2:3000",c);
-				socket.emit("wizard:testSensors");
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e){
-					Log.v("ERRRRRRROR", e.toString());
-			}
+        PACKAGE_NAME = getApplicationContext().getPackageName();
         
+        mTitle = mDrawerTitle = getTitle();
+        mItemsTitles = getResources().getStringArray(R.array.items_array);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        // set a custom shadow that overlays the main content when the drawer opens
+        	//mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        // set up the drawer's list view with items and click listener
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mItemsTitles));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        // enable ActionBar app icon to behave as action to toggle nav drawer
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+        // ActionBarDrawerToggle ties together the the proper interactions
+        // between the sliding drawer and the action bar app icon
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,                  /* host Activity */
+                mDrawerLayout,         /* DrawerLayout object */
+                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+                R.string.drawer_open,  /* "open drawer" description for accessibility */
+                R.string.drawer_close  /* "close drawer" description for accessibility */
+                ) {
+            public void onDrawerClosed(View view) {
+                getActionBar().setTitle(mTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                getActionBar().setTitle(mDrawerTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.setDrawerLockMode(1);
+
+        if (savedInstanceState == null) {
+            selectItem(0);
         }
         
         
+      
+       
+        try {
+		//	socket = new SocketIO("http://10.0.2.2:3000");
+    //    	socket = new SocketIO("http://192.168.0.102:3000");
+        	socket = new SocketIO();
+			c = new CustomCallback();
+		
+			c.setHandler(handler);
+		//	socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
+			socket.connect("http://10.0.2.2:3000",c);
+			socket.emit("wizard:testSensors");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e){
+				Log.v("ERRRRRRROR", e.toString());
+		}
+       
+	}
         
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
