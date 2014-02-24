@@ -20,6 +20,14 @@ import java.net.MalformedURLException;
 
 import com.cs190.project.navigationdrawerexample.LoginWindow;
 import com.example.android.navigationdrawerexample.R;
+//import com.example.graphhydrapp.Graph;
+//import com.example.graphhydrapp.Graph;
+import com.example.graphhydrapp.LightGraphFragment;
+import com.example.graphhydrapp.PhGraphFragment;
+//import com.example.graphhydrapp.PowerGraph;
+import com.example.graphhydrapp.PowerGraphFragment;
+import com.example.graphhydrapp.TempGraphFragment;
+import com.example.graphhydrapp.WaterGraphFragment;
 
 import io.socket.CustomCallback;
 import io.socket.SocketIO;
@@ -32,6 +40,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,8 +56,6 @@ import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
-	
-	public static final boolean DEBUG = true;
 	
 	public static String PACKAGE_NAME;
 	
@@ -72,10 +79,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        
-        if (!login)
-        	startActivity(new Intent(context, LoginWindow.class));
-        
+//        if(!login)
+//        startActivity(new Intent(context, LoginWindow.class));
         PACKAGE_NAME = getApplicationContext().getPackageName();
         
         mTitle = mDrawerTitle = getTitle();
@@ -138,9 +143,11 @@ public class MainActivity extends Activity {
 		} catch (Exception e){
 				Log.v("ERRRRRRROR", e.toString());
 		}
-       
-	}
         
+        
+        
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -177,12 +184,67 @@ public class MainActivity extends Activity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = new ItemFragment();
+    	Fragment fragment = null;
+//        if(position == 4){
+//        	 fragment = new LightGraphFragment();
+//        }else{
+//        	 fragment = new ItemFragment();
+//        }
+//        Fragment fragment = null;
+        switch (position){
+        case 0:
+        	//sensors
+        	//fragment = new SensorsFragment();
+        	fragment = new ItemFragment();
+        	break;
+        case 1:
+        	//power graph
+        	fragment = new PowerGraphFragment();
+        	break;
+        case 2:
+        	//temp graph
+        	fragment = new TempGraphFragment();
+        	break;
+        case 3:
+        	//ph graph
+        	fragment = new PhGraphFragment();
+        	break;
+        case 4:
+        	//light graph
+        	fragment = new LightGraphFragment();
+        	break;
+        case 5:
+        	//water graph
+        	fragment = new WaterGraphFragment();
+        	break;
+        case 6:
+        	//timers
+        	
+        	//fragment = new TimersFragment();
+        	//break;
+        default:
+        	fragment = new ItemFragment();
+        	break;
+        	
+        }
+//        
+//        if(fragment!= null){
+//        	FragmentManager fragmentManager = getFragmentManager();
+//        	fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+//        	mDrawerList.setItemChecked(position, true);
+//        	setTitle(mItemsTitles[position]);
+//        	mDrawerLayout.closeDrawer(mDrawerList);
+//        } else{
+//        	Log.e("MainActivity", "Error in creating fragment");
+//        }
+        
         Bundle args = new Bundle();
         args.putInt(ItemFragment.ARG_ITEM_NUMBER, position);
         fragment.setArguments(args);
 
         FragmentManager fragmentManager = getFragmentManager();
+        
+        
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
         // update selected item and title, then close the drawer
@@ -219,6 +281,9 @@ public class MainActivity extends Activity {
     /**
      * Fragment that appears in the "content_frame", shows a panel
      */
+    
+    
+    
     public static class ItemFragment extends Fragment {
         public static final String ARG_ITEM_NUMBER = "itmer_number";
 
@@ -235,6 +300,7 @@ public class MainActivity extends Activity {
         	//        	 Log.d("dev debugg",Integer.toString(resID));
         	View rootView = inflater.inflate(resID, container, false);
         	getActivity().setTitle(itemSelected);
+        	
         	if(layoutStr.equals("fragment_sensors")){
         		
         	  TextView t1 = (TextView)rootView.findViewById(R.id.TV1);
@@ -245,6 +311,8 @@ public class MainActivity extends Activity {
 	  		  c.setHumidityText(t4);
 	  		  c.setPhText(t1);
 	  		  c.setWaterTempText(t3);
+	  		  
+	  		 
         	}
         	return rootView;
         }
