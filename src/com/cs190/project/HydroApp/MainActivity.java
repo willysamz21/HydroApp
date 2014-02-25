@@ -128,13 +128,13 @@ public class MainActivity extends Activity {
       
        
         try {
-		//	socket = new SocketIO("http://10.0.2.2:3000");
-    //    	socket = new SocketIO("http://192.168.0.102:3000");
+		               //	socket = new SocketIO("http://10.0.2.2:3000");
+                      //    	socket = new SocketIO("http://192.168.0.102:3000");
         	socket = new SocketIO();
 			c = new CustomCallback();
 		
 			c.setHandler(handler);
-		//	socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
+		               //	socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
 			socket.connect("http://10.0.2.2:3000",c);
 			socket.emit("wizard:testSensors");
 		} catch (MalformedURLException e) {
@@ -143,8 +143,7 @@ public class MainActivity extends Activity {
 		} catch (Exception e){
 				Log.v("ERRRRRRROR", e.toString());
 		}
-        
-        
+
         
     }
 
@@ -185,12 +184,7 @@ public class MainActivity extends Activity {
     private void selectItem(int position) {
         // update the main content by replacing fragments
     	Fragment fragment = null;
-//        if(position == 4){
-//        	 fragment = new LightGraphFragment();
-//        }else{
-//        	 fragment = new ItemFragment();
-//        }
-//        Fragment fragment = null;
+
         switch (position){
         case 0:
         	//sensors
@@ -227,20 +221,7 @@ public class MainActivity extends Activity {
         	break;
         	
         }
-//        
-//        if(fragment!= null){
-//        	FragmentManager fragmentManager = getFragmentManager();
-//        	fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-//        	mDrawerList.setItemChecked(position, true);
-//        	setTitle(mItemsTitles[position]);
-//        	mDrawerLayout.closeDrawer(mDrawerList);
-//        } else{
-//        	Log.e("MainActivity", "Error in creating fragment");
-//        }
-        
-        Bundle args = new Bundle();
-        args.putInt(ItemFragment.ARG_ITEM_NUMBER, position);
-        fragment.setArguments(args);
+
 
         FragmentManager fragmentManager = getFragmentManager();
         
@@ -277,44 +258,6 @@ public class MainActivity extends Activity {
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
-    /**
-     * Fragment that appears in the "content_frame", shows a panel
-     */
     
-    
-    
-    public static class ItemFragment extends Fragment {
-        public static final String ARG_ITEM_NUMBER = "itmer_number";
-
-        public ItemFragment() {}
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        	int i = getArguments().getInt(ARG_ITEM_NUMBER);
-        	String itemSelected = getResources().getStringArray(R.array.items_array)[i];
-        	String layoutStr = "fragment_"+itemSelected.toLowerCase();
-        	//        	 Log.d("dev debugg",layoutStr);
-        	int resID = getResources().getIdentifier(layoutStr, "layout", PACKAGE_NAME);
-        	
-        	//        	 Log.d("dev debugg",Integer.toString(resID));
-        	View rootView = inflater.inflate(resID, container, false);
-        	getActivity().setTitle(itemSelected);
-        	
-        	if(layoutStr.equals("fragment_sensors")){
-        		
-        	  TextView t1 = (TextView)rootView.findViewById(R.id.TV1);
-              TextView t2 = (TextView) rootView.findViewById(R.id.T2);
-              TextView t3 = (TextView) rootView.findViewById(R.id.T3);
-              TextView t4 = (TextView) rootView.findViewById(R.id.T4);
-              c.setAirTempText(t2);
-	  		  c.setHumidityText(t4);
-	  		  c.setPhText(t1);
-	  		  c.setWaterTempText(t3);
-	  		  
-	  		 
-        	}
-        	return rootView;
-        }
-    }
+ 
 }
