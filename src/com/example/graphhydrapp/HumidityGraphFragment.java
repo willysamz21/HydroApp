@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 
 import com.example.android.navigationdrawerexample.R;
 
-public class LightGraphFragment extends Fragment {
+public class HumidityGraphFragment extends Fragment {
     //public static final String ARG_ITEM_NUMBER = "itmer_number";
 
    // public LightGraphFragment() {}
@@ -48,16 +48,16 @@ public class LightGraphFragment extends Fragment {
 		mRenderer.setXTitle("Days of Growth");
 		mRenderer.setYTitle("Humidity");
 		mRenderer.setGridColor(3);
-		mRenderer.setChartTitle("Light Graph");
+		mRenderer.setChartTitle("Humidity Graph");
 		mRenderer.setApplyBackgroundColor(true);
 		mRenderer.setBackgroundColor(Color.BLACK);
     	
     	mChartView = ChartFactory.getLineChartView( getActivity(), dataset, mRenderer);
     	
-    	View view = (LinearLayout) inflater.inflate(R.layout.fragment_light, container, false);
+    	View view = (LinearLayout) inflater.inflate(R.layout.fragment_humidity, container, false);
   		  
   		 LinearLayout lightChartContainer = (LinearLayout) view.findViewById(
-  		        R.id.light_chart_container);
+  		        R.id.humidity_chart_container);
     	lightChartContainer.addView(mChartView);
     	
     	return view;

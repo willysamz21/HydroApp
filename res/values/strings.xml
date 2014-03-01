@@ -19,12 +19,12 @@
     <string name="graph_name">Graphs</string>
     <string-array name="items_array">
         <item>Sensors</item>
-        <item>Power</item>
-        <item>Temp</item>
-        <item>Ph</item>
-        <item>Light</item>
-        <item>Water</item> 
-        <item>Timers</item>
+        <item>Power Graph</item>
+        <item>Air Temp Graph</item>
+        <item>Ph Graph</item>
+        <item>Humidity Graph</item>
+        <item>Water Temp Graph</item> 
+        <item>Controller</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
@@ -49,5 +49,13 @@
 	<string name="temp_graph">Temperature Graph</string>
 	<string name="power_graph">Power Graph</string>
 	<string name="light_graph">Light Graph</string>
+	<string name= "humidity_graph">Humidity Graph</string> 
+	<string name="lights_state">Lights</string>
+	<string name="fan_state">Fans</string>
+	<string name="water_pump_state"> H20</string>
+	<string name="signal_strength">Signal Strength : </string>
+	<string name="signal_reading">signal</string>
+	<string name="current_timer">Current Timer</string>
+	<string name="over_ride">Override Switch</string>
 	
 </resources>

@@ -22,8 +22,9 @@ import com.cs190.project.navigationdrawerexample.LoginWindow;
 import com.example.android.navigationdrawerexample.R;
 //import com.example.graphhydrapp.Graph;
 //import com.example.graphhydrapp.Graph;
-import com.example.graphhydrapp.LightGraphFragment;
+//import com.example.graphhydrapp.LightGraphFragment;
 import com.example.graphhydrapp.PhGraphFragment;
+import com.example.graphhydrapp.HumidityGraphFragment;
 //import com.example.graphhydrapp.PowerGraph;
 import com.example.graphhydrapp.PowerGraphFragment;
 import com.example.graphhydrapp.TempGraphFragment;
@@ -40,19 +41,20 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
+//import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
+//import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+//import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+//import android.widget.TextView;
+import android.widget.ToggleButton;
 
 
 public class MainActivity extends Activity {
@@ -72,7 +74,7 @@ public class MainActivity extends Activity {
 	Handler handler = new Handler();
 	boolean login = false;
 	Intent loginWindow;
-	
+	 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	final Context context = this;
@@ -188,8 +190,8 @@ public class MainActivity extends Activity {
         switch (position){
         case 0:
         	//sensors
-        	//fragment = new SensorsFragment();
-        	fragment = new ItemFragment();
+        	fragment = new SensorFragment();
+        	//fragment = new ItemFragment();
         	break;
         case 1:
         	//power graph
@@ -205,19 +207,20 @@ public class MainActivity extends Activity {
         	break;
         case 4:
         	//light graph
-        	fragment = new LightGraphFragment();
+        	fragment = new HumidityGraphFragment();
         	break;
         case 5:
         	//water graph
         	fragment = new WaterGraphFragment();
         	break;
         case 6:
-        	//timers
+        	//Controller
         	
-        	//fragment = new TimersFragment();
+        	fragment = new ControllerFragment();
         	//break;
         default:
-        	fragment = new ItemFragment();
+        	//fragment = new SensorFragment();
+        	fragment = new ControllerFragment();
         	break;
         	
         }
