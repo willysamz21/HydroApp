@@ -18,7 +18,7 @@ public class NewGrowConfigActivity extends FragmentActivity {
 		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 		
 		if (fragment == null) {
-			fragment = new GrowConfigFragment();
+			fragment = new GrowTypePickerFragment();
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
