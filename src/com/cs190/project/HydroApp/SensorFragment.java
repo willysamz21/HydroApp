@@ -1,5 +1,7 @@
 package com.cs190.project.HydroApp;
 
+import com.example.android.navigationdrawerexample.R;
+
 import io.socket.SocketIO;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.android.navigationdrawerexample.R;
 
 public class SensorFragment extends Fragment{
       
@@ -29,8 +30,13 @@ public class SensorFragment extends Fragment{
         	 return rootView;
         }
        	public void update(String ph, String air, String water, String humidity ) {
+       		Double d=0.0; 
+       		if(air != null){
+       			d = Double.parseDouble(air);
+	       		d = ((d*9)/5)+32;
+	       	}
 			phText.setText(ph);
-			airTempText.setText(air);
+			airTempText.setText(d.toString());
 			waterTempText.setText(water);
 			humidityText.setText(humidity);
 		}
