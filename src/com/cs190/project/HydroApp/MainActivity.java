@@ -132,10 +132,7 @@ public class MainActivity extends Activity {
         try {
 		   // socket = new SocketIO("http://10.0.2.2:3000");
            // socket = new SocketIO("http://192.168.0.102:3000");
-        	socket = new SocketIO();
-        	
-        	c = new CustomCallback(handler,sensors);
-		    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
+        	initializeSocket();
 			//socket.connect("http://10.0.2.2:3000",c);
 			//socket.emit("wizard:testSensors");
 		} catch (MalformedURLException e) {
@@ -147,8 +144,41 @@ public class MainActivity extends Activity {
 
         
     }
-
     @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+        
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
+        if (socket != null) {
+        	socket.disconnect();
+        	socket=null;
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        // Get the Camera instance as the activity achieves full user focus
+        if (socket == null) {
+            try {
+				initializeSocket();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // Local method to handle camera init
+        }
+    }
+
+    private void initializeSocket() throws MalformedURLException {
+
+    	socket = new SocketIO();
+    	
+    	c = new CustomCallback(handler,sensors);
+	    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
+		
+	}
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
