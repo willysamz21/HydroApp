@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<TextView android:id="@+id/stageLengthPromt"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true"
+		android:gravity="center"
+		android:text="@string/stage_length_question"
+		android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	<RelativeLayout android:id="@+id/stageLengthLabel"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:gravity="center"
+	    android:layout_below="@id/stageLengthPromt"
+	    android:layout_margin="20dp" >
+	
+		<TextView android:id="@+id/stageText"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_margin="20dp"
+	    	android:layout_alignParentLeft="true"
+	    	android:text="@string/stage"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+		
+		<TextView android:id="@+id/lengthText"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_margin="20dp"
+	    	android:layout_toRightOf="@id/stageText"
+	    	android:text="@string/length"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+		    
+		
+	</RelativeLayout>
+	
+	<RelativeLayout android:id="@+id/stageLengthPicker"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:gravity="center"
+	    android:layout_below="@id/stageLengthLabel"
+	    android:layout_margin="20dp" />
+    
+
+</RelativeLayout>
