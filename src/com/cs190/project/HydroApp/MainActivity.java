@@ -74,13 +74,15 @@ public class MainActivity extends Activity {
 	Handler handler = new Handler();
 	boolean login = false;
 	Intent loginWindow;
-	 
+	SensorFragment sensors = new SensorFragment();
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	final Context context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+    	
 //        if(!login)
 //        startActivity(new Intent(context, LoginWindow.class));
         PACKAGE_NAME = getApplicationContext().getPackageName();
@@ -126,19 +128,16 @@ public class MainActivity extends Activity {
             selectItem(0);
         }
         
-        
-      
        
         try {
-		               //	socket = new SocketIO("http://10.0.2.2:3000");
-                      //    	socket = new SocketIO("http://192.168.0.102:3000");
+		   // socket = new SocketIO("http://10.0.2.2:3000");
+           // socket = new SocketIO("http://192.168.0.102:3000");
         	socket = new SocketIO();
-			c = new CustomCallback();
-		
-			c.setHandler(handler);
-		               //	socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
-			socket.connect("http://10.0.2.2:3000",c);
-			socket.emit("wizard:testSensors");
+        	
+        	c = new CustomCallback(handler,sensors);
+		    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
+			//socket.connect("http://10.0.2.2:3000",c);
+			//socket.emit("wizard:testSensors");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -190,7 +189,7 @@ public class MainActivity extends Activity {
         switch (position){
         case 0:
         	//sensors
-        	fragment = new SensorFragment();
+        	fragment = sensors;
         	//fragment = new ItemFragment();
         	break;
         case 1:

@@ -3,44 +3,26 @@ package io.socket;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cs190.project.HydroApp.SensorFragment;
+
+import android.app.Fragment;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
 public class CustomCallback implements IOCallback{
 
-	private TextView phText;
-	private TextView humidityText;
-	public TextView getPhText() {
-		return phText;
-	}
+	private SensorFragment sensors;
+	private Handler handler;
+	private String s;
+	private String air;
+	private String water;
+	private String humidity;
+	private String ph;
 
-	public void setPhText(TextView phText) {
-		this.phText = phText;
-	}
-
-	public TextView getHumidityText() {
-		return humidityText;
-	}
-
-	public void setHumidityText(TextView humidityText) {
-		this.humidityText = humidityText;
-	}
-
-	public TextView getWaterTempText() {
-		return waterTempText;
-	}
-
-	public void setWaterTempText(TextView waterTempText) {
-		this.waterTempText = waterTempText;
-	}
-
-	public TextView getAirTempText() {
-		return airTempText;
-	}
-
-	public void setAirTempText(TextView airTempText) {
-		this.airTempText = airTempText;
+	public CustomCallback(Handler h, SensorFragment sensors){
+		this.sensors = sensors;
+		handler = h;
 	}
 
 	public String getS() {
@@ -51,19 +33,10 @@ public class CustomCallback implements IOCallback{
 		this.s = s;
 	}
 
-	private TextView waterTempText;
-	private TextView airTempText;
-	private Handler handler;
-	private String s;
-	private String air;
-	private String water;
-	private String humidity;
-	private String ph;
 	@Override
     public void onMessage(JSONObject json, IOAcknowledge ack) {
         try {
             Log.v("OK","Server said:" + json.toString(2));
-            //json.get("name");
             Log.v("MSG",json.get("name").toString());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -118,22 +91,11 @@ public class CustomCallback implements IOCallback{
         handler.post(new Runnable(){
 			@Override
 			public void run() {
-				airTempText.setText(air+"deg");
-				waterTempText.setText(water+"deg");
-				humidityText.setText(humidity+"%");
-				phText.setText(ph);
-			
+				sensors.update(ph, air, water, humidity);
+				
 			}
 		});
         }
     }
-
-	public Handler getHandler() {
-		return handler;
-	}
-
-	public void setHandler(Handler handler) {
-		this.handler = handler;
-	}
 
 }

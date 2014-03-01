@@ -21,12 +21,7 @@ public class ItemFragment extends Fragment {
         	 TextView t1 = (TextView)rootView.findViewById(R.id.TV1);
              TextView t2 = (TextView) rootView.findViewById(R.id.T2);
              TextView t3 = (TextView) rootView.findViewById(R.id.T3);
-             TextView t4 = (TextView) rootView.findViewById(R.id.T4);
-             MainActivity.c.setAirTempText(t2);
-	  		 MainActivity.c.setHumidityText(t4);
-	  		 MainActivity.c.setPhText(t1);
-	  		 MainActivity.c.setWaterTempText(t3);
-	  		       	
+             TextView t4 = (TextView) rootView.findViewById(R.id.T4);	  		       	
         	 return rootView;
         }
     }
