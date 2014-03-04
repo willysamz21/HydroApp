@@ -29,7 +29,7 @@ import com.example.graphhydrapp.HumidityGraphFragment;
 import com.example.graphhydrapp.PowerGraphFragment;
 import com.example.graphhydrapp.TempGraphFragment;
 import com.example.graphhydrapp.WaterGraphFragment;
-
+import com.cs190.project.HydroApp.TimerFragment;
 import io.socket.CustomCallback;
 import io.socket.SocketIO;
 import android.app.Activity;
@@ -41,6 +41,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.app.ListFragment;
 //import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -215,7 +216,8 @@ public class MainActivity extends Activity {
     private void selectItem(int position) {
         // update the main content by replacing fragments
     	Fragment fragment = null;
-
+    	ListFragment listFrag = null;
+    	
         switch (position){
         case 0:
         	//sensors
@@ -244,12 +246,13 @@ public class MainActivity extends Activity {
         	break;
         case 6:
         	//Controller
-        	
-        	fragment = new ControllerFragment();
+        	fragment = new TimerFragment();
+        	//fragment = new ControllerFragment();
         	//break;
         default:
-        	//fragment = new SensorFragment();
-        	fragment = new ControllerFragment();
+        	//fragment = new SensorFragment()
+        	 fragment = new TimerFragment();
+        	//fragment = new ControllerFragment();
         	break;
         	
         }
@@ -259,6 +262,8 @@ public class MainActivity extends Activity {
         
         
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        
+       
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);

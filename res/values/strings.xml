@@ -24,7 +24,7 @@
         <item>Ph Graph</item>
         <item>Humidity Graph</item>
         <item>Water Temp Graph</item> 
-        <item>Controller</item>
+        <item>Timers</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
