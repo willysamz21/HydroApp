@@ -9,7 +9,7 @@ public class SensorModel {
 	private Integer max;
 	private Integer min;
 	private String name;
-	private List<Object> data = new ArrayList<Object>();
+	private ArrayList<SensorReading> data = new ArrayList<SensorReading>();
 
 	public String get_id() {
 		return _id;
@@ -43,11 +43,11 @@ public class SensorModel {
 		this.name = name;
 	}
 
-	public List<Object> getData() {
+	public ArrayList<SensorReading> getData() {
 		return data;
 	}
 
-	public void setData(List<Object> data) {
+	public void setData(ArrayList<SensorReading> data) {
 		this.data = data;
 	}
 

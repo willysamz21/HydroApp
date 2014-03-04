@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cs190.project.HydroApp.MainActivity;
 import com.cs190.project.HydroApp.SensorFragment;
 import com.cs190.project.HydroApp.SensorModel;
+import com.cs190.project.HydroApp.SensorReading;
 import com.cs190.project.UserConfiguration.Plant;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -77,11 +79,28 @@ public class CustomCallback implements IOCallback{
     	
     	if(event.equals("sensorModules")){
     		Type sensorListModels = new TypeToken<ArrayList<SensorModel>>(){}.getType();
-    		ArrayList<SensorModel> sensorList = g.fromJson(result, sensorListModels);
+    		MainActivity.sensorList = g.fromJson(result, sensorListModels);
+    		Log.v("OK","Created Sensor List");
+       	}
+    	else if(event.equals("dataReadings")){
+    		JSONObject o = (JSONObject) args[0];
+    		Type sensorReadingList = new TypeToken<ArrayList<SensorReading>>(){}.getType();
     		
-    		Log.v("OK","whatever");
-    			
-    	
+    		try {
+				String modelName = (String) o.get("name");
+				ArrayList<SensorReading> ar = g.fromJson(o.getString("data").toString()	, sensorReadingList);
+				
+				for(SensorModel sn : MainActivity.sensorList){
+					if(sn.getName().equals(modelName)){
+						sn.setData(ar);
+					}	
+				}
+	    		
+    		} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
     	}
     	
     	
@@ -110,7 +129,7 @@ public class CustomCallback implements IOCallback{
         handler.post(new Runnable(){
 			@Override
 			public void run() {
-				sensors.update(ph, air, water, humidity);
+				//sensors.update(ph, air, water, humidity);
 				
 			}
 		});

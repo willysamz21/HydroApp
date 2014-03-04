@@ -17,6 +17,10 @@
 package com.cs190.project.HydroApp;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.cs190.project.navigationdrawerexample.LoginWindow;
 import com.example.android.navigationdrawerexample.R;
@@ -71,7 +75,9 @@ public class MainActivity extends Activity {
 
     public static SocketIO socket;
     public static CustomCallback c;
-	Handler handler = new Handler();
+    public static ArrayList<SensorModel>sensorList;
+    //public static wirelessList;
+    Handler handler = new Handler();
 	boolean login = false;
 	Intent loginWindow;
 	SensorFragment sensors = new SensorFragment();
@@ -219,16 +225,20 @@ public class MainActivity extends Activity {
 
         switch (position){
         case 0:
-        	//sensors
         	fragment = sensors;
-        	//fragment = new ItemFragment();
         	break;
         case 1:
         	//power graph
         	fragment = new PowerGraphFragment();
         	break;
         case 2:
-        	//temp graph
+        	JSONObject o = new JSONObject();
+        	try {
+				o.put("name", "Air Temperature");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+        	socket.emit("data",o);
         	fragment = new TempGraphFragment();
         	break;
         case 3:
