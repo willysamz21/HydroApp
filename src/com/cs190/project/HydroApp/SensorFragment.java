@@ -43,9 +43,21 @@ public class SensorFragment extends Fragment {
 
 	public void update(String ph, String air, String water, String humidity ) {
 		Double d=0.0; 
+		String airFormated = "";
 		if(air != null){
 			d = Double.parseDouble(air);
 			d = ((d*9)/5)+32;
+			airFormated = d.toString() + " F";
+		}
+		String waterFormated = "";
+		if(water != null){
+			waterFormated = water.substring(0, 5);
+			waterFormated += " F";
+		}		
+		 
+		String humidityFormated = "";
+		if(humidity != null){
+			humidityFormated = humidity+" %";
 		}
 		
 		TextView t1Val = null;
@@ -70,7 +82,7 @@ public class SensorFragment extends Fragment {
 			TextView t2 = (TextView) outView2.get(0);
 			ViewGroup row2 = (ViewGroup) t2.getParent();
 			t2Val = (TextView) row2.findViewById(R.id.value);
-			t2Val.setText(air);
+			t2Val.setText(airFormated);
 		} catch(IndexOutOfBoundsException e){
 			System.out.println("index out of bound for TV Air");
 		}
@@ -81,31 +93,22 @@ public class SensorFragment extends Fragment {
 			TextView t3 = (TextView) outView3.get(0);
 			ViewGroup row3 = (ViewGroup) t3.getParent();
 			t3Val = (TextView) row3.findViewById(R.id.value);
-			t3Val.setText(humidity);
+			t3Val.setText(humidityFormated);
 		} catch(IndexOutOfBoundsException e){
 			System.out.println("index out of bound for TV Humidity");
 		}
-		
+		 	 
 		ArrayList<View> outView4 = new ArrayList<View>();
 		rootView.findViewsWithText(outView4, "Water", View.FIND_VIEWS_WITH_TEXT);
 		try{
 			TextView t4 = (TextView) outView4.get(0);
 			ViewGroup row4 = (ViewGroup) t4.getParent();
 			t4Val = (TextView) row4.findViewById(R.id.value);
-			t4Val.setText(water);
+			t4Val.setText(waterFormated); 
 		} catch(IndexOutOfBoundsException e){
 			System.out.println("index out of bound for TV Water");
 		}			
-
-
-
-
-
-
-//		phText.setText(ph);
-//		airTempText.setText(d.toString());
-//		waterTempText.setText(water);
-//		humidityText.setText(humidity);
+  
 	}        
 
 

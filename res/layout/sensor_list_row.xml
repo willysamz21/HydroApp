@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:padding="15dip"
+        android:padding="20dip"
         android:text="@+id/label"
         android:textColor="#2185c5"
-        android:textSize="35dip"
+        android:textSize="32dip"
         android:textStyle="bold" >
     </TextView>
 
@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/label"
         android:layout_centerVertical="true"
-        android:layout_marginRight="50dip"
+        android:layout_marginRight="15dip"
         android:layout_toLeftOf="@+id/arrowList"
         android:background="@drawable/border" 
         android:textColor="#8abb3b"
-        android:textSize="30dip" >
+        android:textSize="28dip" >
     </TextView>
 
     <!-- Rightend Arrow -->
