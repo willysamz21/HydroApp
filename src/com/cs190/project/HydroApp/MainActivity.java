@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         // set a custom shadow that overlays the main content when the drawer opens
-        	//mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        //mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mItemsTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -177,6 +177,7 @@ public class MainActivity extends Activity {
     	
     	c = new CustomCallback(handler,sensors);
 	    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
+	    socket.emit("initial");
 		
 	}
 	@Override
