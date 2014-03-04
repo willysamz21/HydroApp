@@ -176,6 +176,7 @@ public class MainActivity extends Activity {
     	
     	c = new CustomCallback(handler,sensors);
 	    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
+	    socket.emit("initial");
 		
 	}
 	@Override

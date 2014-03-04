@@ -1,9 +1,16 @@
 package io.socket;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cs190.project.HydroApp.SensorFragment;
+import com.cs190.project.HydroApp.SensorModel;
+import com.cs190.project.UserConfiguration.Plant;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.app.Fragment;
 import android.os.Handler;
@@ -58,7 +65,6 @@ public class CustomCallback implements IOCallback{
     public void onDisconnect() {
         Log.v("OK","Connection terminated.");
     }
-
     @Override
     public void onConnect() {
         Log.v("OK","Connection established");
@@ -66,9 +72,22 @@ public class CustomCallback implements IOCallback{
     @Override
     public void on(String event, IOAcknowledge ack, Object... args) {
     	Log.v("OK","Server triggered event '" + event + "'");
+    	Gson g = new Gson();
+    	String result = args[0].toString();
+    	
+    	if(event.equals("sensorModules")){
+    		Type sensorListModels = new TypeToken<ArrayList<SensorModel>>(){}.getType();
+    		ArrayList<SensorModel> sensorList = g.fromJson(result, sensorListModels);
+    		
+    		Log.v("OK","whatever");
+    			
+    	
+    	}
+    	
+    	
         JSONObject hm;
         if(!event.equals("wizard:testSensors")){
-		try {
+		/*try {
 			hm = (JSONObject)args[0];
 			 s = hm.getString("data");
 			Log.v("DATA",s);
@@ -87,7 +106,7 @@ public class CustomCallback implements IOCallback{
         }
         else if(event.equals("wizard:current:waterTempSensor")){
 			water = new String(s);
-        }
+        }*/
         handler.post(new Runnable(){
 			@Override
 			public void run() {
