@@ -12,10 +12,12 @@ import com.cs190.project.listviews.SensorsArrayAdapter;
 import com.example.android.navigationdrawerexample.R;
 
 
+
 public class SensorFragment extends ListFragment{
       
 	    
 	    public SensorsArrayAdapter adapter; 
+	    public View rootView;
 		
 		public void onCreate(Bundle savedInstanceState) {
 		    super.onCreate(savedInstanceState);
@@ -50,8 +52,7 @@ public class SensorFragment extends ListFragment{
        	
        		}
        		adapter.notifyDataSetChanged();	
-       			
-			
+   		
 		}
        	public void createSensors(){
        	 adapter = new SensorsArrayAdapter(getActivity(),
