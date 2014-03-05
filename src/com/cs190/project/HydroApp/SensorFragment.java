@@ -20,10 +20,7 @@ public class SensorFragment extends ListFragment{
 		public void onCreate(Bundle savedInstanceState) {
 		    super.onCreate(savedInstanceState);
 		    
-		    adapter = new SensorsArrayAdapter(getActivity(),
-			        R.layout.fragment_sensors, MainActivity.sensorList);
-       				setListAdapter(adapter);
-		    
+		   
 		    
 		 
 		  }
@@ -56,6 +53,12 @@ public class SensorFragment extends ListFragment{
        			
 			
 		}
+       	public void createSensors(){
+       	 adapter = new SensorsArrayAdapter(getActivity(),
+			        R.layout.fragment_sensors, MainActivity.sensorList);
+    				setListAdapter(adapter);
+		    
+       	}
        	
        
 

@@ -15,7 +15,7 @@
         android:padding="20dip"
         android:text="@+id/label"
         android:textColor="#2185c5"
-        android:textSize="32dip"
+        android:textSize="25dip"
         android:textStyle="bold" >
     </TextView>
 
