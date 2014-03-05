@@ -76,12 +76,13 @@ public class MainActivity extends Activity {
 
     public static SocketIO socket;
     public static CustomCallback c;
-    public static ArrayList<SensorModel>sensorList;
+    public static ArrayList<SensorModel>sensorList = new ArrayList<SensorModel>();
     //public static wirelessList;
     Handler handler = new Handler();
 	boolean login = false;
 	Intent loginWindow;
 	SensorFragment sensors = new SensorFragment();
+	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +149,8 @@ public class MainActivity extends Activity {
 		} catch (Exception e){
 				Log.v("ERRRRRRROR", e.toString());
 		}
+        
+        
 
         
     }
@@ -228,6 +231,7 @@ public class MainActivity extends Activity {
         switch (position){
         case 0:
         	fragment = sensors;
+        	Log.v("CASE", "count: " + sensors.sensorList.size());
         	break;
         case 1:
         	//power graph

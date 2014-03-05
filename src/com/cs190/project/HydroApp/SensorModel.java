@@ -9,6 +9,7 @@ public class SensorModel {
 	private Integer max;
 	private Integer min;
 	private String name;
+	private String reading;
 	private ArrayList<SensorReading> data = new ArrayList<SensorReading>();
 
 	public String get_id() {
@@ -49,6 +50,14 @@ public class SensorModel {
 
 	public void setData(ArrayList<SensorReading> data) {
 		this.data = data;
+	}
+	
+	public String getReading(){
+		return reading;
+	}
+	
+	public void setReading(String reading){
+		this.reading = reading;
 	}
 
 }

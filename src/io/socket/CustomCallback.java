@@ -11,6 +11,8 @@ import com.cs190.project.HydroApp.SensorFragment;
 import com.cs190.project.HydroApp.SensorModel;
 import com.cs190.project.HydroApp.SensorReading;
 import com.cs190.project.UserConfiguration.Plant;
+import com.cs190.project.listviews.SensorsArrayAdapter;
+import com.example.android.navigationdrawerexample.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -75,11 +77,16 @@ public class CustomCallback implements IOCallback{
     public void on(String event, IOAcknowledge ack, Object... args) {
     	Log.v("OK","Server triggered event '" + event + "'");
     	Gson g = new Gson();
-    	String result = args[0].toString();
+    	JSONObject hm;
     	
     	if(event.equals("sensorModules")){
+    		String result = args[0].toString();
     		Type sensorListModels = new TypeToken<ArrayList<SensorModel>>(){}.getType();
-    		MainActivity.sensorList = g.fromJson(result, sensorListModels);
+    		ArrayList <SensorModel> holder = g.fromJson(result, sensorListModels);
+    		MainActivity.sensorList.clear();
+    		MainActivity.sensorList.addAll(holder);
+    		
+    		
     		Log.v("OK","Created Sensor List");
        	}
     	else if(event.equals("dataReadings")){
@@ -102,38 +109,37 @@ public class CustomCallback implements IOCallback{
 			}
     		
     	}
-    	
-    	
-        JSONObject hm;
-        if(!event.equals("wizard:testSensors")){
-		/*try {
-			hm = (JSONObject)args[0];
-			 s = hm.getString("data");
-			Log.v("DATA",s);
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}	
-        if(event.equals("wizard:current:phSensor")){
-    		ph = new String(s);
-        }
-        else if(event.equals("wizard:current:tempSensor")){
-			air = new String(s);
-        }
-        else if(event.equals("wizard:current:humiditySensor")){
-			humidity = new String(s);
-        }
-        else if(event.equals("wizard:current:waterTempSensor")){
-			water = new String(s);
-        }*/
-        handler.post(new Runnable(){
-			@Override
-			public void run() {
-				//sensors.update(ph, air, water, humidity);
-				
-			}
-		});
-        }
+    	else if(!event.equals("wirelessModules") && !event.equals("dataReadings") && !event.equals("sensorModules"))
+    	{
+    		
+    		try {
+				hm = (JSONObject)args[0];
+				 s = hm.getString("data");
+				Log.v("DATA",s);
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	
+	        if(event.equals("wizard:current:phSensor")){
+	    		ph = new String(s);
+	        }
+	        else if(event.equals("wizard:current:tempSensor")){
+				air = new String(s);
+	        }
+	        else if(event.equals("wizard:current:humiditySensor")){
+				humidity = new String(s);
+	        }
+	        else if(event.equals("wizard:current:waterTempSensor")){
+				water = new String(s);
+	        }
+	        handler.post(new Runnable(){
+				@Override
+				public void run() {
+					sensors.update(ph, air, water, humidity);
+					
+				}
+			});
+    	}
     }
 
 }
