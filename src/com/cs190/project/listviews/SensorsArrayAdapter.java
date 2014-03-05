@@ -24,7 +24,7 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		super(context, resource, objects);
 		this.context = context;
 		this.mSensorList = objects;
-		Log.v("Adapter, ", "count: " + mSensorList.size());
+		
 		
 	}
 	

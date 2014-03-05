@@ -14,7 +14,7 @@ import com.example.android.navigationdrawerexample.R;
 
 public class SensorFragment extends ListFragment{
       
-	    public ArrayList<SensorModel> sensorList = new ArrayList<SensorModel>();
+	    
 	    public SensorsArrayAdapter adapter; 
 		
 		public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class SensorFragment extends ListFragment{
 		    adapter = new SensorsArrayAdapter(getActivity(),
 			        R.layout.fragment_sensors, MainActivity.sensorList);
        				setListAdapter(adapter);
-		    //ArrayList<SensorModel> values = new ArrayList<SensorModel>();
+		    
 		    
 		 
 		  }

@@ -85,6 +85,7 @@ public class CustomCallback implements IOCallback{
     		ArrayList <SensorModel> holder = g.fromJson(result, sensorListModels);
     		MainActivity.sensorList.clear();
     		MainActivity.sensorList.addAll(holder);
+    		sensors.adapter.notifyDataSetChanged();
     		
     		
     		Log.v("OK","Created Sensor List");

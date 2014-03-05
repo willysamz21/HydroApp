@@ -231,7 +231,6 @@ public class MainActivity extends Activity {
         switch (position){
         case 0:
         	fragment = sensors;
-        	Log.v("CASE", "count: " + sensors.sensorList.size());
         	break;
         case 1:
         	//power graph
