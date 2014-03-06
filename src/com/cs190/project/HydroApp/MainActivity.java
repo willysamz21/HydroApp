@@ -243,7 +243,9 @@ public class MainActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+        	
         	socket.emit("data",o);
+        	//MainActivity.sensorList.get(0).getData().
         	fragment = new TempGraphFragment();
         	break;
         case 3:

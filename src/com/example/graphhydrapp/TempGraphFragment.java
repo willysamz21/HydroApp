@@ -1,5 +1,9 @@
 package com.example.graphhydrapp;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
@@ -18,17 +22,53 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 //import android.widget.TextView;
 
+import com.cs190.project.HydroApp.MainActivity;
+import com.cs190.project.HydroApp.SensorModel;
+import com.cs190.project.HydroApp.SensorReading;
 import com.example.android.navigationdrawerexample.R;
 
 public class TempGraphFragment extends Fragment {
     //public static final String ARG_ITEM_NUMBER = "itmer_number";
 
    // public LightGraphFragment() {}
+	
+	 Double [] x1;
+	 Date [] y1;
+	
+	@SuppressWarnings("deprecation")
+	public void update( ) {
+		
+		SensorModel airTempSensor = MainActivity.sensorList.get(2);
+    	ArrayList<SensorReading> airTempReading = airTempSensor.getData();
+    	x1 = new Double[airTempReading.size()];
+    	y1 = new Date[airTempReading.size()];
+    	
+    	for(int i = 0; i< airTempReading.size();i++){
+    		x1[i] = airTempReading.get(i).getValue();
+    		y1[i] = new Date(airTempReading.get(i).getDate());
+    		
+    	}
+	}
     @Override
     
+    
+    
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    	
+    	
+    	//create method to do, like update
+//    	SensorModel airTempSensor = MainActivity.sensorList.get(2);
+//    	ArrayList<SensorReading> airTempReading = airTempSensor.getData();
+//    	
+//    	for(SensorReading reading : airTempReading){
+//    		Double value  = reading.getValue();
+//    		String date = reading.getDate();
+//    	}
+    	
     	int [] x = { 1,2,3,4,5,6,7,8,9,10};
 		int [] y = { 30, 100,45, 110, 42, 126, 39,  90, 55, 145};
+		
+		
 		GraphicalView mChartView = null;
 		
 		TimeSeries series = new TimeSeries("line");
