@@ -161,8 +161,8 @@ public class MainActivity extends Activity {
         // Release the Camera because we don't need it when paused
         // and other activities might need to use it.
         if (socket != null) {
-        	socket.disconnect();
-        	socket=null;
+        	//socket.disconnect();
+        	//socket=null;
         }
     }
     @Override
@@ -171,12 +171,12 @@ public class MainActivity extends Activity {
 
         // Get the Camera instance as the activity achieves full user focus
         if (socket == null) {
-            try {
-				initializeSocket();
+           /* try {
+			//	initializeSocket();
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} // Local method to handle camera init
+			} */// Local method to handle camera init
         }
     }
 
