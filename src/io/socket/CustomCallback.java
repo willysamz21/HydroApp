@@ -115,7 +115,7 @@ public class CustomCallback implements IOCallback{
 			}
     		
     	}
-    	else if(!event.equals("wirelessModules") && !event.equals("dataReadings") && !event.equals("sensorModules"))
+    	else if(event.subSequence(0, 2).equals("wi"))
     	{
     		
     		try {
@@ -146,6 +146,10 @@ public class CustomCallback implements IOCallback{
 				}
 			});
     	}
+    	else{
+    		//put the rest of your shit here
+    	}
+    	
     }
 
 }
