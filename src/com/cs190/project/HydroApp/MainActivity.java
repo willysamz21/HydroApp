@@ -77,12 +77,14 @@ public class MainActivity extends Activity {
     public static SocketIO socket;
     public static CustomCallback c;
     public static ArrayList<SensorModel>sensorList = new ArrayList<SensorModel>();
-    //public static wirelessList;
+    public static ArrayList<WirelessModel>wirelessList = new ArrayList<WirelessModel>();
     Handler handler = new Handler();
 	boolean login = false;
 	Intent loginWindow;
 	SensorFragment sensors = new SensorFragment();
 	TempGraphFragment tempFragment = new TempGraphFragment();
+	TimerFragment wireless = new TimerFragment();
+	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +138,7 @@ public class MainActivity extends Activity {
             selectItem(0);
         }
         
-       
+        
         try {
 		   // socket = new SocketIO("http://10.0.2.2:3000");
            // socket = new SocketIO("http://192.168.0.102:3000");
@@ -184,7 +186,7 @@ public class MainActivity extends Activity {
 
     	socket = new SocketIO();
     	
-    	c = new CustomCallback(handler,sensors, tempFragment);
+    	c = new CustomCallback(handler,sensors, tempFragment, wireless);
 	    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
 	    socket.emit("initial");
 		
@@ -264,7 +266,7 @@ public class MainActivity extends Activity {
         	break;
         case 6:
         	//Controller
-        	fragment = new TimerFragment();
+        	fragment = wireless;
         	//fragment = new ControllerFragment();
         	//break;
         default:

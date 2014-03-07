@@ -1,11 +1,10 @@
 package com.cs190.project.listviews;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,8 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 	
 	private Context context;
 	private ArrayList<SensorModel> mSensorList = new ArrayList<SensorModel>();
-	@SuppressLint("UseSparseArrays")
-	private HashMap<Integer, View> view = new HashMap<Integer, View>();
+	
+	private SparseArray<View> view = new SparseArray<View>();
 
 	public SensorsArrayAdapter(Context context, int resource,
 			ArrayList<SensorModel> objects) 

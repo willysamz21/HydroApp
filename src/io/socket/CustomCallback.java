@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import com.cs190.project.HydroApp.MainActivity;
 import com.cs190.project.HydroApp.SensorFragment;
 import com.cs190.project.HydroApp.SensorModel;
@@ -22,6 +23,9 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.cs190.project.HydroApp.TimerFragment;
+import com.cs190.project.HydroApp.WirelessModel;
+
 public class CustomCallback implements IOCallback{
 
 	private SensorFragment sensors;
@@ -32,9 +36,14 @@ public class CustomCallback implements IOCallback{
 	private String water;
 	private String humidity;
 	private String ph;
+	
+	private TimerFragment wirelessModules;
 
-	public CustomCallback(Handler h, SensorFragment sensors, TempGraphFragment tempFragment){
+
+	public CustomCallback(Handler h, SensorFragment sensors, TempGraphFragment tempFragment, TimerFragment wirelessModules){
+
 		this.sensors = sensors;
+		this.wirelessModules = wirelessModules;
 		handler = h;
 		this.tempFragment = tempFragment;
 	}
@@ -98,6 +107,30 @@ public class CustomCallback implements IOCallback{
     		
     		Log.v("OK","Created Sensor List");
        	}
+    	if(event.equals("wirelessModules"))
+    	{
+    		String result = args[0].toString();
+    		
+    		Log.v("Callback", "result: " + result);
+    		Type wirelessListModels = new TypeToken<ArrayList<WirelessModel>>(){}.getType();
+    		ArrayList <WirelessModel> holder = g.fromJson(result, wirelessListModels);
+    		MainActivity.wirelessList.clear();
+    		MainActivity.wirelessList.addAll(holder);
+    		Log.v("Callback", "size:" + MainActivity.wirelessList.size());
+    		for(int i = 0; i < MainActivity.wirelessList.size(); i++)
+    		{
+    			Log.v("Callback", "name: " + MainActivity.wirelessList.get(i).getName());
+    		}
+    		
+    		handler.post(new Runnable(){
+				@Override
+				public void run() {
+					wirelessModules.createWirelessModules();
+				}});
+    		
+    		
+    		//Log.v("OK","Created Wireless List");
+    	}
     	else if(event.equals("dataReadings")){
     		JSONObject o = (JSONObject) args[0];
     		Type sensorReadingList = new TypeToken<ArrayList<SensorReading>>(){}.getType();
