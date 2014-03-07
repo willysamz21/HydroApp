@@ -129,7 +129,7 @@ public class CustomCallback implements IOCallback{
 			}
     		
     	}
-    	else if(event.subSequence(0, 5).equals("wizard:"))
+    	else if(event.subSequence(0, 7).equals("wizard:"))
     	{
     		
     		try {
