@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
 	boolean login = false;
 	Intent loginWindow;
 	SensorFragment sensors = new SensorFragment();
-	
+	TempGraphFragment tempFragment = new TempGraphFragment();
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,7 +184,7 @@ public class MainActivity extends Activity {
 
     	socket = new SocketIO();
     	
-    	c = new CustomCallback(handler,sensors);
+    	c = new CustomCallback(handler,sensors, tempFragment);
 	    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
 	    socket.emit("initial");
 		
@@ -239,14 +239,16 @@ public class MainActivity extends Activity {
         case 2:
         	JSONObject o = new JSONObject();
         	try {
-				o.put("name", "Air Temperature");
+				o.put("name", "Water Temperature");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
         	
         	socket.emit("data",o);
         	//MainActivity.sensorList.get(0).getData().
-        	fragment = new TempGraphFragment();
+        	//fragment = new TempGraphFragment();
+        	fragment = tempFragment;
+        	
         	break;
         case 3:
         	//ph graph

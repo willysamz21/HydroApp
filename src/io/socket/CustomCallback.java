@@ -13,6 +13,7 @@ import com.cs190.project.HydroApp.SensorReading;
 import com.cs190.project.UserConfiguration.Plant;
 import com.cs190.project.listviews.SensorsArrayAdapter;
 import com.example.android.navigationdrawerexample.R;
+import com.example.graphhydrapp.TempGraphFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,6 +25,7 @@ import android.widget.TextView;
 public class CustomCallback implements IOCallback{
 
 	private SensorFragment sensors;
+	private TempGraphFragment tempFragment;
 	private Handler handler;
 	private String s;
 	private String air;
@@ -31,9 +33,10 @@ public class CustomCallback implements IOCallback{
 	private String humidity;
 	private String ph;
 
-	public CustomCallback(Handler h, SensorFragment sensors){
+	public CustomCallback(Handler h, SensorFragment sensors, TempGraphFragment tempFragment){
 		this.sensors = sensors;
 		handler = h;
+		this.tempFragment = tempFragment;
 	}
 
 	public String getS() {
@@ -109,13 +112,24 @@ public class CustomCallback implements IOCallback{
 					}	
 				}
 	    		
+				if(modelName.equals("Water Temperature")){
+					handler.post(new Runnable(){
+						@Override
+						public void run() {
+							tempFragment.update();
+							
+						}
+					});
+					
+				}
+				
     		} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		
     	}
-    	else if(event.subSequence(0, 2).equals("wi"))
+    	else if(event.subSequence(0, 5).equals("wizard:"))
     	{
     		
     		try {
