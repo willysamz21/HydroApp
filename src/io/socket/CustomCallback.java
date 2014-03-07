@@ -6,24 +6,22 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Handler;
+import android.util.Log;
+
 import com.cs190.project.HydroApp.MainActivity;
 import com.cs190.project.HydroApp.SensorFragment;
 import com.cs190.project.HydroApp.SensorModel;
 import com.cs190.project.HydroApp.SensorReading;
-import com.cs190.project.UserConfiguration.Plant;
-import com.cs190.project.listviews.SensorsArrayAdapter;
-import com.example.android.navigationdrawerexample.R;
+import com.cs190.project.HydroApp.TimerFragment;
+import com.cs190.project.HydroApp.WirelessModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import android.app.Fragment;
-import android.os.Handler;
-import android.util.Log;
-import android.widget.TextView;
 
 public class CustomCallback implements IOCallback{
 
 	private SensorFragment sensors;
+	private TimerFragment wirelessModules;
 	private Handler handler;
 	private String s;
 	private String air;
@@ -31,8 +29,9 @@ public class CustomCallback implements IOCallback{
 	private String humidity;
 	private String ph;
 
-	public CustomCallback(Handler h, SensorFragment sensors){
+	public CustomCallback(Handler h, SensorFragment sensors, TimerFragment wirelessModules){
 		this.sensors = sensors;
+		this.wirelessModules = wirelessModules;
 		handler = h;
 	}
 
@@ -95,6 +94,30 @@ public class CustomCallback implements IOCallback{
     		
     		Log.v("OK","Created Sensor List");
        	}
+    	if(event.equals("wirelessModules"))
+    	{
+    		String result = args[0].toString();
+    		
+    		Log.v("Callback", "result: " + result);
+    		Type wirelessListModels = new TypeToken<ArrayList<WirelessModel>>(){}.getType();
+    		ArrayList <WirelessModel> holder = g.fromJson(result, wirelessListModels);
+    		MainActivity.wirelessList.clear();
+    		MainActivity.wirelessList.addAll(holder);
+    		Log.v("Callback", "size:" + MainActivity.wirelessList.size());
+    		for(int i = 0; i < MainActivity.wirelessList.size(); i++)
+    		{
+    			Log.v("Callback", "name: " + MainActivity.wirelessList.get(i).getName());
+    		}
+    		
+    		handler.post(new Runnable(){
+				@Override
+				public void run() {
+					wirelessModules.createWirelessModules();
+				}});
+    		
+    		
+    		//Log.v("OK","Created Wireless List");
+    	}
     	else if(event.equals("dataReadings")){
     		JSONObject o = (JSONObject) args[0];
     		Type sensorReadingList = new TypeToken<ArrayList<SensorReading>>(){}.getType();
@@ -115,7 +138,7 @@ public class CustomCallback implements IOCallback{
 			}
     		
     	}
-    	else if(event.subSequence(0, 2).equals("wi"))
+    	else if(event.subSequence(0, 3).equals("wiz"))
     	{
     		
     		try {
