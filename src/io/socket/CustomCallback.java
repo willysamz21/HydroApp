@@ -6,33 +6,46 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Handler;
-import android.util.Log;
 
 import com.cs190.project.HydroApp.MainActivity;
 import com.cs190.project.HydroApp.SensorFragment;
 import com.cs190.project.HydroApp.SensorModel;
 import com.cs190.project.HydroApp.SensorReading;
-import com.cs190.project.HydroApp.TimerFragment;
-import com.cs190.project.HydroApp.WirelessModel;
+import com.cs190.project.UserConfiguration.Plant;
+import com.cs190.project.listviews.SensorsArrayAdapter;
+import com.example.android.navigationdrawerexample.R;
+import com.example.graphhydrapp.TempGraphFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import android.app.Fragment;
+import android.os.Handler;
+import android.util.Log;
+import android.widget.TextView;
+
+import com.cs190.project.HydroApp.TimerFragment;
+import com.cs190.project.HydroApp.WirelessModel;
 
 public class CustomCallback implements IOCallback{
 
 	private SensorFragment sensors;
-	private TimerFragment wirelessModules;
+	private TempGraphFragment tempFragment;
 	private Handler handler;
 	private String s;
 	private String air;
 	private String water;
 	private String humidity;
 	private String ph;
+	
+	private TimerFragment wirelessModules;
 
-	public CustomCallback(Handler h, SensorFragment sensors, TimerFragment wirelessModules){
+
+	public CustomCallback(Handler h, SensorFragment sensors, TempGraphFragment tempFragment, TimerFragment wirelessModules){
+
 		this.sensors = sensors;
 		this.wirelessModules = wirelessModules;
 		handler = h;
+		this.tempFragment = tempFragment;
 	}
 
 	public String getS() {
@@ -132,13 +145,24 @@ public class CustomCallback implements IOCallback{
 					}	
 				}
 	    		
+				if(modelName.equals("Water Temperature")){
+					handler.post(new Runnable(){
+						@Override
+						public void run() {
+							tempFragment.update();
+							
+						}
+					});
+					
+				}
+				
     		} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		
     	}
-    	else if(event.subSequence(0, 3).equals("wiz"))
+    	else if(event.subSequence(0, 7).equals("wizard:"))
     	{
     		
     		try {
