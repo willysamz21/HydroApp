@@ -39,13 +39,14 @@ public class SensorFragment extends ListFragment{
        		DecimalFormat df = new DecimalFormat("####0.00");
        		Double d=0.0; 
        		if(air != null){
+       			
        			d = Double.parseDouble(air);
 	       		d = ((d*9)/5)+32;
 	       		air = df.format(d);
 	       	}
        		
        		String[] readings = {df.format(new Double(ph)), df.format(new Double(water)), air, humidity};
-       		
+   
        		for(int i = 0; i < MainActivity.sensorList.size(); i++)
        		{
        			MainActivity.sensorList.get(i).setReading(readings[i]);
