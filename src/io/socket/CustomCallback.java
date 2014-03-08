@@ -116,20 +116,8 @@ public class CustomCallback implements IOCallback{
     		ArrayList <WirelessModel> holder = g.fromJson(result, wirelessListModels);
     		MainActivity.wirelessList.clear();
     		MainActivity.wirelessList.addAll(holder);
-    		Log.v("Callback", "size:" + MainActivity.wirelessList.size());
-    		for(int i = 0; i < MainActivity.wirelessList.size(); i++)
-    		{
-    			Log.v("Callback", "name: " + MainActivity.wirelessList.get(i).getName());
-    		}
     		
-    		handler.post(new Runnable(){
-				@Override
-				public void run() {
-					wirelessModules.createWirelessModules();
-				}});
-    		
-    		
-    		//Log.v("OK","Created Wireless List");
+    		Log.v("OK","Created Wireless List");
     	}
     	else if(event.equals("dataReadings")){
     		JSONObject o = (JSONObject) args[0];

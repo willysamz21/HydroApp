@@ -44,16 +44,14 @@ public class TimerFragment extends ListFragment{
 	  @Override
 	  public void onListItemClick(ListView l, View v, int position, long id) {
 	    // do something with the data
+		  Bundle b = new Bundle();
+		  b.putInt("wirelessID", position);
 		  Fragment fragment = new ControllerFragment();
+		  fragment.setArguments(b);
 		  FragmentManager fragmentManager = getFragmentManager();
 		  fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		  
 	  }
 	  
-	  public void createWirelessModules(){
-		  
-		
-		    
-	  }
       
 }
