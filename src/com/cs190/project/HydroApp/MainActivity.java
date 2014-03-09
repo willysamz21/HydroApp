@@ -349,12 +349,15 @@ public class MainActivity extends Activity {
         	fragment = sensors;
         	break;
         case 1:
-        	return;
-        case 2:
+        	//Controller
+        	fragment = new TimerFragment();
+        	//fragment = new ControllerFragment();
+        	break;
+        case 3:
         	//power graph
         	fragment = new PowerGraphFragment();
         	break;
-        case 3:
+        case 4:
         	JSONObject o = new JSONObject();
         	try {
 				o.put("name", "Air Temperature");
@@ -366,28 +369,22 @@ public class MainActivity extends Activity {
         	//MainActivity.sensorList.get(0).getData().
         	fragment = new TempGraphFragment();
         	break;
-        case 4:
+        case 5:
         	//ph graph
         	fragment = new PhGraphFragment();
         	break;
-        case 5:
+        case 6:
         	//light graph
         	fragment = new HumidityGraphFragment();
         	break;
-        case 6:
+        case 7:
         	//water graph
         	fragment = new WaterGraphFragment();
         	break;
-        case 7:
-        	//Controller
-        	fragment = new TimerFragment();
+        default:
+        	return;
         	//fragment = new ControllerFragment();
         	//break;
-        default:
-        	//fragment = new SensorFragment()
-        	 fragment = new TimerFragment();
-        	//fragment = new ControllerFragment();
-        	break;
         }
 
 
