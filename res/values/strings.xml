@@ -19,11 +19,12 @@
     <string name="graph_name">Graphs</string>
     <string-array name="items_array">
         <item>Sensors</item>
-        <item>Power Graph</item>
-        <item>Air Temp Graph</item>
-        <item>Ph Graph</item>
-        <item>Humidity Graph</item>
-        <item>Water Temp Graph</item> 
+        <item>Graphs:</item>
+        <item>->Power Graph</item>
+        <item>->Air Temp Graph</item>
+        <item>->Ph Graph</item>
+        <item>->Humidity Graph</item>
+        <item>->Water Temp Graph</item> 
         <item>Timers</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>

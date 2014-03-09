@@ -18,6 +18,7 @@ package com.cs190.project.HydroApp;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +35,7 @@ import com.example.graphhydrapp.PowerGraphFragment;
 import com.example.graphhydrapp.TempGraphFragment;
 import com.example.graphhydrapp.WaterGraphFragment;
 import com.cs190.project.HydroApp.TimerFragment;
+
 import io.socket.CustomCallback;
 import io.socket.SocketIO;
 import android.app.Activity;
@@ -49,15 +51,19 @@ import android.app.ListFragment;
 //import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 //import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 //import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 //import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -73,7 +79,8 @@ public class MainActivity extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mItemsTitles;
-
+	private MyCustomAdapter mAdapter;
+	
     public static SocketIO socket;
     public static CustomCallback c;
     public static ArrayList<SensorModel>sensorList = new ArrayList<SensorModel>();
@@ -84,7 +91,102 @@ public class MainActivity extends Activity {
 	SensorFragment sensors = new SensorFragment();
 	TempGraphFragment tempFragment = new TempGraphFragment();
 	TimerFragment wireless = new TimerFragment();
+
+	public static class ViewHolder {
+	    public TextView textView;
+	}
 	
+	private class MyCustomAdapter extends BaseAdapter {
+
+	    private static final int TYPE_ITEM = 0;
+	    private static final int TYPE_SEPARATOR = 1;
+	    private static final int TYPE_SEPARATED = 2;
+	    private static final int TYPE_MAX_COUNT = TYPE_SEPARATOR + 2;
+
+	    private ArrayList<String> mData = new ArrayList<String>();
+	    private LayoutInflater mInflater;
+
+	    private TreeSet<Integer> mSeparatorsSet = new TreeSet<Integer>();
+	    private TreeSet<Integer> mSeparatoredSet = new TreeSet<Integer>();
+
+	    public MyCustomAdapter() {
+	        mInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	    }
+
+	    public void addItem(final String item) {
+	        mData.add(item);
+	        notifyDataSetChanged();
+	    }
+
+	    public void addSeparatorItem(final String item) {
+	        mData.add(item);
+	        // save separator position
+	        mSeparatorsSet.add(mData.size() - 1);
+	        notifyDataSetChanged();
+	    }
+	    
+	    public void addSeparatedItem(final String item) {
+	        mData.add(item);
+	        // save separator position
+	        mSeparatoredSet.add(mData.size() - 1);
+	        notifyDataSetChanged();
+	    }
+
+	    @Override
+	    public int getItemViewType(int position) {
+	        return mSeparatorsSet.contains(position) ? TYPE_SEPARATOR : (mSeparatoredSet.contains(position) ? TYPE_SEPARATED :TYPE_ITEM);
+	    }
+
+	    @Override
+	    public int getViewTypeCount() {
+	        return TYPE_MAX_COUNT;
+	    }
+
+	    @Override
+	    public int getCount() {
+	        return mData.size();
+	    }
+
+	    @Override
+	    public String getItem(int position) {
+	        return mData.get(position);
+	    }
+
+	    @Override
+	    public long getItemId(int position) {
+	        return position;
+	    }
+
+	    @Override
+	    public View getView(int position, View convertView, ViewGroup parent) {
+	        ViewHolder holder = null;
+	        int type = getItemViewType(position);
+	        System.out.println("getView " + position + " " + convertView + " type = " + type);
+	        if (convertView == null) {
+	            holder = new ViewHolder();
+	            switch (type) {
+	                case TYPE_ITEM:
+	                    convertView = mInflater.inflate(R.layout.drawer_list_item, null);
+	                    holder.textView = (TextView)convertView.findViewById(R.id.text);
+	                    break;
+	                case TYPE_SEPARATOR:
+	                    convertView = mInflater.inflate(R.layout.drawer_list_item2, null);
+	                    holder.textView = (TextView)convertView.findViewById(R.id.textSeparator);
+	                    break;
+	                case TYPE_SEPARATED:
+	                    convertView = mInflater.inflate(R.layout.drawer_list_item3, null);
+	                    holder.textView = (TextView)convertView.findViewById(R.id.textSeparated);
+	                    break;
+	            }
+	            convertView.setTag(holder);
+	        } else {
+	            holder = (ViewHolder)convertView.getTag();
+	        }
+	        holder.textView.setText(mData.get(position));
+	        return convertView;
+	    }
+
+	}
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +207,21 @@ public class MainActivity extends Activity {
         // set a custom shadow that overlays the main content when the drawer opens
         //mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mItemsTitles));
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        mAdapter = new MyCustomAdapter();
+        for(String item: mItemsTitles){
+        	if(item.contains(":")){
+        		mAdapter.addSeparatorItem(item);
+        	}else if(item.contains("->")){
+        		mAdapter.addSeparatedItem(item.substring(2));
+        	}
+        	else
+        		mAdapter.addItem(item);
+        }
+        mDrawerList.setAdapter(mAdapter);
 
+        //mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mItemsTitles));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
@@ -235,38 +349,38 @@ public class MainActivity extends Activity {
         	fragment = sensors;
         	break;
         case 1:
+        	return;
+        case 2:
         	//power graph
         	fragment = new PowerGraphFragment();
         	break;
-        case 2:
+        case 3:
         	JSONObject o = new JSONObject();
         	try {
-				o.put("name", "Water Temperature");
+				o.put("name", "Air Temperature");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
         	
         	socket.emit("data",o);
         	//MainActivity.sensorList.get(0).getData().
-        	//fragment = new TempGraphFragment();
-        	fragment = tempFragment;
-        	
+        	fragment = new TempGraphFragment();
         	break;
-        case 3:
+        case 4:
         	//ph graph
         	fragment = new PhGraphFragment();
         	break;
-        case 4:
+        case 5:
         	//light graph
         	fragment = new HumidityGraphFragment();
         	break;
-        case 5:
+        case 6:
         	//water graph
         	fragment = new WaterGraphFragment();
         	break;
-        case 6:
+        case 7:
         	//Controller
-        	fragment = wireless;
+        	fragment = new TimerFragment();
         	//fragment = new ControllerFragment();
         	//break;
         default:
@@ -274,7 +388,6 @@ public class MainActivity extends Activity {
         	 fragment = new TimerFragment();
         	//fragment = new ControllerFragment();
         	break;
-        	
         }
 
 
