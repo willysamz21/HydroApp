@@ -54,7 +54,7 @@
 	        android:id="@+id/android:list"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:divider="#b5b5b5"
+	        android:divider="#fff"
 	        android:dividerHeight="1dp" >
 	 </ListView>
 </LinearLayout>

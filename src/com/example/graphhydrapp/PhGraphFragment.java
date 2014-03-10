@@ -47,8 +47,8 @@ public class PhGraphFragment extends Fragment {
     		//x1[i] = airTempReading.get(i).getValue();
     		//y1[i] = airTempReading.get(i).getConvertedDate();
     		series.add(phReading.get(i).getConvertedDate(), phReading.get(i).getValue());	
-    		Log.v("Date", phReading.get(i).getConvertedDate().toString());
-    		Log.v("Values", phReading.get(i).getValue().toString());
+    		//Log.v("Date", phReading.get(i).getConvertedDate().toString());
+    		//Log.v("Values", phReading.get(i).getValue().toString());
     		
     	}
     

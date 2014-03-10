@@ -19,6 +19,7 @@ public class SensorFragment extends ListFragment{
 	public SensorsArrayAdapter adapter; 
 	public View rootView;
 	SensorUniqueFragment fragment = null;
+	private Boolean createdyet = false;
      	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState); 
@@ -31,7 +32,9 @@ public class SensorFragment extends ListFragment{
 	}
 
 	public void update(String ph, String air, String water, String humidity ) {
-
+		//if(!createdyet){
+		//	return;
+		//}
 		DecimalFormat df = new DecimalFormat("####0.00");
 		Double d=0.0; 
 		if(air != null){
@@ -57,6 +60,7 @@ public class SensorFragment extends ListFragment{
 	}
 	
 	public void createSensors(){
+		createdyet = true;
 		adapter = new SensorsArrayAdapter(getActivity(),
 				R.layout.fragment_sensors, MainActivity.sensorList);
 		setListAdapter(adapter);

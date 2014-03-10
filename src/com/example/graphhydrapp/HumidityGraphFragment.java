@@ -46,8 +46,8 @@ public class HumidityGraphFragment extends Fragment {
     		//x1[i] = airTempReading.get(i).getValue();
     		//y1[i] = airTempReading.get(i).getConvertedDate();
     		series.add(humidityReading.get(i).getConvertedDate(), humidityReading.get(i).getValue());	
-    		Log.v("Date", humidityReading.get(i).getConvertedDate().toString());
-    		Log.v("Values", humidityReading.get(i).getValue().toString());
+    		//Log.v("Date", humidityReading.get(i).getConvertedDate().toString());
+    		//Log.v("Values", humidityReading.get(i).getValue().toString());
     		
     	}
     

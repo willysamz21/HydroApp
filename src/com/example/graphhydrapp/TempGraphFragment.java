@@ -52,8 +52,8 @@ public class TempGraphFragment extends Fragment {
     		//x1[i] = airTempReading.get(i).getValue();
     		//y1[i] = airTempReading.get(i).getConvertedDate();
     		series.add(airTempReading.get(i).getConvertedDate(), airTempReading.get(i).getValue());	
-    		Log.v("Date", airTempReading.get(i).getConvertedDate().toString());
-    		Log.v("Values", airTempReading.get(i).getValue().toString());
+    		//Log.v("Date", airTempReading.get(i).getConvertedDate().toString());
+    		//Log.v("Values", airTempReading.get(i).getValue().toString());
     		
     	}
     

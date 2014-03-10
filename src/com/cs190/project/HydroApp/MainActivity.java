@@ -361,8 +361,7 @@ public class MainActivity extends Activity {
         	//power graph
         	fragment = new PowerGraphFragment();
         	break;
-
-        case 2:
+        case 4:
         	o = new JSONObject();
          	try {
 				o.put("name", "Air Temperature");

@@ -49,8 +49,8 @@ public class WaterGraphFragment extends Fragment {
     		//x1[i] = airTempReading.get(i).getValue();
     		//y1[i] = airTempReading.get(i).getConvertedDate();
     		series.add(waterTempReading.get(i).getConvertedDate(), waterTempReading.get(i).getValue());	
-    		Log.v("Date", waterTempReading.get(i).getConvertedDate().toString());
-    		Log.v("Values", waterTempReading.get(i).getValue().toString());
+    		//Log.v("Date", waterTempReading.get(i).getConvertedDate().toString());
+    		//Log.v("Values", waterTempReading.get(i).getValue().toString());
     		
     	}
     
