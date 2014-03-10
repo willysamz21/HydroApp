@@ -82,8 +82,12 @@ public class MainActivity extends Activity {
 	boolean login = false;
 	Intent loginWindow;
 	SensorFragment sensors = new SensorFragment();
-	TempGraphFragment tempFragment = new TempGraphFragment();
 	TimerFragment wireless = new TimerFragment();
+	
+	TempGraphFragment tempFragment = new TempGraphFragment();
+	WaterGraphFragment waterFrag = new WaterGraphFragment();
+	HumidityGraphFragment humFrag = new HumidityGraphFragment();
+	PhGraphFragment phFrag = new PhGraphFragment();
 	
 	
     @Override
@@ -186,7 +190,7 @@ public class MainActivity extends Activity {
 
     	socket = new SocketIO();
     	
-    	c = new CustomCallback(handler,sensors, tempFragment, wireless);
+    	c = new CustomCallback(handler,sensors, tempFragment, wireless, waterFrag, humFrag, phFrag);
 	    socket.connect("http://ec2-50-112-185-131.us-west-2.compute.amazonaws.com:3000",c);
 	    socket.emit("initial");
 		
@@ -229,7 +233,7 @@ public class MainActivity extends Activity {
         // update the main content by replacing fragments
     	Fragment fragment = null;
     	ListFragment listFrag = null;
-    	
+    	JSONObject o;
         switch (position){
         case 0:
         	fragment = sensors;
@@ -239,9 +243,9 @@ public class MainActivity extends Activity {
         	fragment = new PowerGraphFragment();
         	break;
         case 2:
-        	JSONObject o = new JSONObject();
+        	o = new JSONObject();
         	try {
-				o.put("name", "Water Temperature");
+				o.put("name", "Air Temperature");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -254,15 +258,40 @@ public class MainActivity extends Activity {
         	break;
         case 3:
         	//ph graph
-        	fragment = new PhGraphFragment();
+        	o = new JSONObject();
+        	try {
+				o.put("name", "pH");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+        	socket.emit("data",o);
+        	fragment = phFrag;
+        	//fragment = new PhGraphFragment();
         	break;
         case 4:
-        	//light graph
-        	fragment = new HumidityGraphFragment();
+        	//humidity graph
+        	o = new JSONObject();
+        	try {
+				o.put("name", "Humidity");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+        	socket.emit("data",o);
+        	fragment = humFrag;
+        	//fragment = new HumidityGraphFragment();
         	break;
         case 5:
         	//water graph
-        	fragment = new WaterGraphFragment();
+        	o = new JSONObject();
+        	try {
+				o.put("name", "Water Temperature");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+        	
+        	socket.emit("data",o);
+        	fragment = waterFrag;
+        	//fragment = new WaterGraphFragment();
         	break;
         case 6:
         	//Controller

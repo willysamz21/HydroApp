@@ -14,7 +14,10 @@ import com.cs190.project.HydroApp.SensorReading;
 import com.cs190.project.UserConfiguration.Plant;
 import com.cs190.project.listviews.SensorsArrayAdapter;
 import com.example.android.navigationdrawerexample.R;
+import com.example.graphhydrapp.HumidityGraphFragment;
+import com.example.graphhydrapp.PhGraphFragment;
 import com.example.graphhydrapp.TempGraphFragment;
+import com.example.graphhydrapp.WaterGraphFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,6 +33,10 @@ public class CustomCallback implements IOCallback{
 
 	private SensorFragment sensors;
 	private TempGraphFragment tempFragment;
+	private WaterGraphFragment waterFrag;
+	private HumidityGraphFragment humFrag;
+	private PhGraphFragment phFrag;
+	
 	private Handler handler;
 	private String s;
 	private String air;
@@ -40,12 +47,15 @@ public class CustomCallback implements IOCallback{
 	private TimerFragment wirelessModules;
 
 
-	public CustomCallback(Handler h, SensorFragment sensors, TempGraphFragment tempFragment, TimerFragment wirelessModules){
+	public CustomCallback(Handler h, SensorFragment sensors, TempGraphFragment tempFragment, TimerFragment wirelessModules, WaterGraphFragment waterFrag, HumidityGraphFragment humFrag, PhGraphFragment phFrag){
 
 		this.sensors = sensors;
 		this.wirelessModules = wirelessModules;
 		handler = h;
 		this.tempFragment = tempFragment;
+		this.waterFrag = waterFrag;
+		this.humFrag = humFrag;
+		this.phFrag = phFrag;
 	}
 
 	public String getS() {
@@ -133,15 +143,44 @@ public class CustomCallback implements IOCallback{
 					}	
 				}
 	    		
-				if(modelName.equals("Water Temperature")){
+				if(modelName.equals("Air Temperature")){
 					handler.post(new Runnable(){
 						@Override
 						public void run() {
 							tempFragment.update();
 							
 						}
-					});
-					
+					});				
+				}
+				
+				if(modelName.equals("Water Temperature")){
+					handler.post(new Runnable(){
+						@Override
+						public void run() {
+							waterFrag.update();
+							
+						}
+					});				
+				}
+				
+				if(modelName.equals("Humidity")){
+					handler.post(new Runnable(){
+						@Override
+						public void run() {
+							humFrag.update();
+							
+						}
+					});				
+				}
+				
+				if(modelName.equals("pH")){
+					handler.post(new Runnable(){
+						@Override
+						public void run() {
+							phFrag.update();
+							
+						}
+					});				
 				}
 				
     		} catch (JSONException e) {
