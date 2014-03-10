@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.example.android.navigationdrawerexample.R;
 
 public class SensorUniqueFragment extends Fragment {
-
-	private int position = -1;
+ 
+	private int position = -1; 
 	 
 	public SensorUniqueFragment(){}
  

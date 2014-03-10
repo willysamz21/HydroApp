@@ -11,45 +11,46 @@ public class WirelessModel {
 	private List<SensorReading> data = new ArrayList<SensorReading>();
 	private Timer timer;
 	private boolean state;
-	
+	private Integer signalStrength;
+
 	public String getName() {
-	return name;
+		return name;
 	}
-	
+
 	public void setName(String name) {
-	this.name = name;
+		this.name = name;
 	}
-	
+
 	public String getWirelessID() {
-	return wirelessID;
+		return wirelessID;
 	}
-	
+
 	public void setWirelessID(String wirelessID) {
-	this.wirelessID = wirelessID;
+		this.wirelessID = wirelessID;
 	}
-	
+
 	public String get_id() {
-	return _id;
+		return _id;
 	}
-	
+
 	public void set_id(String _id) {
-	this._id = _id;
+		this._id = _id;
 	}
-	
+
 	public List<SensorReading> getData() {
-	return data;
+		return data;
 	}
-	
+
 	public void setData(List<SensorReading> data) {
-	this.data = data;
+		this.data = data;
 	}
-	
+
 	public Timer getTimer() {
-	return timer;
+		return timer;
 	}
-	
+
 	public void setTimer(Timer timer) {
-	this.timer = timer;
+		this.timer = timer;
 	}
 
 	public boolean isState() {
@@ -59,6 +60,14 @@ public class WirelessModel {
 	public void setState(boolean state) {
 		this.state = state;
 	}
-	
+
+	public Integer getSignalStrength() {
+		return signalStrength;
+	}
+
+	public void setSignalStrength(Integer signalStrength) {
+		this.signalStrength = signalStrength;
+	}
+
 
 }
