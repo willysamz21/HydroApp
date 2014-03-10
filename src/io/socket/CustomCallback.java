@@ -13,7 +13,6 @@ import com.cs190.project.HydroApp.SensorModel;
 import com.cs190.project.HydroApp.SensorReading;
 import com.cs190.project.UserConfiguration.Plant;
 import com.cs190.project.listviews.SensorsArrayAdapter;
-import com.example.android.navigationdrawerexample.R;
 import com.example.graphhydrapp.HumidityGraphFragment;
 import com.example.graphhydrapp.PhGraphFragment;
 import com.example.graphhydrapp.TempGraphFragment;

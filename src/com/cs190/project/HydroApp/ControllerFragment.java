@@ -3,6 +3,8 @@ package com.cs190.project.HydroApp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.android.navigationdrawerexample.R;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ToggleButton;
 
-import com.example.android.navigationdrawerexample.R;
 //This is really the fragment for the sensors, if i have time i will refactor to better naming practices, dp
 public class ControllerFragment extends Fragment implements OnClickListener {
 	

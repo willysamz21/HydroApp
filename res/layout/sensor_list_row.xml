@@ -26,11 +26,6 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="15dip"
         android:layout_toLeftOf="@+id/arrowList"
-<<<<<<< HEAD
-        android:textColor="#8abb3b"
-        android:textSize="28dip" >
-    </TextView>
-=======
         android:background="#fff" >
         
 	    <ImageView
