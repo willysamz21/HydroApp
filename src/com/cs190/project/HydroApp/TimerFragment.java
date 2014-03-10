@@ -48,6 +48,9 @@ public class TimerFragment extends ListFragment{
 		Fragment fragment = new ControllerFragment();
 		//FragmentManager fragmentManager = getFragmentManager();
 		//fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+		Bundle b = new Bundle();
+		  b.putInt("wirelessID", position);
+		  fragment.setArguments(b);
 
 		FragmentTransaction transaction = getFragmentManager().beginTransaction();
 		transaction.replace(R.id.content_frame, fragment);
@@ -56,10 +59,9 @@ public class TimerFragment extends ListFragment{
 
 	}
 
-	public void createWirelessModules(){
 
 
 
-	}
 
+	
 }

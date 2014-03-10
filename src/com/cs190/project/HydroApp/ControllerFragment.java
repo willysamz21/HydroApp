@@ -1,19 +1,22 @@
 package com.cs190.project.HydroApp;
 
-import com.cs190.project.HydroApp.MainActivity;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Fragment;
-import android.util.Log;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.android.navigationdrawerexample.R;
 //This is really the fragment for the sensors, if i have time i will refactor to better naming practices, dp
 public class ControllerFragment extends Fragment implements OnClickListener {
+	
+		
       
         public ControllerFragment() {}
         //Boolean fansOn = MainActivity.c.isFansOn();
@@ -59,8 +62,29 @@ public class ControllerFragment extends Fragment implements OnClickListener {
         	 
         	 overRide.setOnClickListener(new View.OnClickListener(){
         		 public void onClick(View v){
-        			 lightsOn = !lightsOn;
-        			 Log.v("Value of lightson", lightsOn.toString());
+        			 JSONObject obj = new JSONObject();;
+        			 Bundle b = getArguments();
+        			 int position = b.getInt("wirelessID");
+        			 try {
+						obj.put("wirelessID", MainActivity.wirelessList.get(position).getWirelessID());
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        			 Log.v("Controller", "obj: " + obj);
+        			 if(!lightsOn)
+        			 {
+        				 MainActivity.socket.emit("wireless:turnOn", obj);
+        				 lightsOn = true;
+        			 }
+        			 else
+        			 {
+        				 MainActivity.socket.emit("wireless:turnOff", obj);
+        				 lightsOn = false;
+        			 }
+        				 
+        			 
+        	
         		 }
         	 });
         	 

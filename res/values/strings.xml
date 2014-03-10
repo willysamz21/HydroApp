@@ -21,12 +21,21 @@
 
     <string-array name="items_array">
         <item>Sensors</item>
+<<<<<<< HEAD
         <item>Power Graph</item>
         <item>Air Temp Graph</item>
         <item>Ph Graph</item>
         <item>Humidity Graph</item>
         <item>Water Temp Graph</item>
+=======
+>>>>>>> a5df0091be479c88a7d701f4e309bf59c1d687a8
         <item>Timers</item>
+        <item>Graphs:</item>
+        <item>->Power Graph</item>
+        <item>->Air Temp Graph</item>
+        <item>->Ph Graph</item>
+        <item>->Humidity Graph</item>
+        <item>->Water Temp Graph</item> 
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>

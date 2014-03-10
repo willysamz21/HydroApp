@@ -2,15 +2,21 @@ package com.cs190.project.listviews;
 
 import java.util.ArrayList;
 
+import android.R.color;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cs190.project.HydroApp.MainActivity;
 import com.cs190.project.HydroApp.SensorModel;
 import com.example.android.navigationdrawerexample.R;
 
@@ -18,6 +24,7 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 	
 	private Context context;
 	private ArrayList<SensorModel> mSensorList = new ArrayList<SensorModel>();
+    private final char degree = '\u00B0';
 	
 	private SparseArray<View> view = new SparseArray<View>();
 
@@ -55,14 +62,35 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		TextView name = (TextView) view.get(position).findViewById(R.id.label);
 		TextView reading = (TextView) view.get(position).findViewById(R.id.value);
 		
-		name.setText(mSensorList.get(position).getName());
-		reading.setText(mSensorList.get(position).getReading());
+		String myName = mSensorList.get(position).getName();
+		String myReading = mSensorList.get(position).getReading();
+		
+		if(myName.equalsIgnoreCase("ph")){
+			reading.setTextColor(pHColor(myReading));
+			//((View) view.get(position).findViewById(R.id.backView1)).setBackgroundColor(color.white);
+			//((ImageView) view.get(position).findViewById(R.id.imageView1)).setImageResource(R.drawable.ph);
+		}
+		else if(myName.contains("Temperature")){
+			myReading += degree;
+		}
+		else if(myName.equalsIgnoreCase("humidity")){
+			myReading += "%";
+		}
+		
+		
+		name.setText(myName);
+		reading.setText(myReading);
 		
 		
 		
 		return view.get(position);
 		
 
+	}
+
+
+	private int pHColor(String myReading) {
+		return Color.parseColor("#90c84b");
 	}
 
 }

@@ -1,9 +1,60 @@
-<ListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-    	xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/sensorsList"
-        android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainselector"
+    android:orientation="vertical" >
+
+	<LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="#b5b5b5"
-        android:dividerHeight="1dp" >
- </ListView>
+        android:padding="10dp"  >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mainselector2"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="42dp"
+                    android:layout_height="54dp"
+                    android:src="@drawable/warning" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="10dp"
+                    android:layout_height="fill_parent" />
+
+                <TextView
+                    android:id="@+id/mymsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Air Temperature is 10% different than the suggested. You might want to change the settings for the Air Temperature." />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Control Panel" />
+        </LinearLayout>
+
+	</LinearLayout>
+
+	<ListView
+	        android:id="@+id/android:list"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:divider="#b5b5b5"
+	        android:dividerHeight="1dp" >
+	 </ListView>
+</LinearLayout>

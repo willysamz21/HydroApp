@@ -18,12 +18,12 @@
 	android:layout_height="wrap_content"
 	android:layout_width="fill_parent">
 <TextView
-    android:id="@+id/text"
+    android:id="@+id/textSeparated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
-    android:paddingLeft="16dp"
+    android:paddingLeft="32dp"
     android:paddingRight="16dp"
     android:textColor="#fff"
     android:textSize="14sp"
