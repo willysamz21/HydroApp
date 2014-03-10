@@ -39,7 +39,7 @@ public class TempGraphFragment extends Fragment {
 	
 	public void update( ) {
 		
-		SensorModel airTempSensor = MainActivity.sensorList.get(1);
+		SensorModel airTempSensor = MainActivity.sensorList.get(2);
 		
     	ArrayList<SensorReading> airTempReading = airTempSensor.getData();
     	//x1 = new Double[airTempReading.size()];
