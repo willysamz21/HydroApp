@@ -12,20 +12,23 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
 <resources>
+
     <string name="app_name">HydroApp</string>
     <string name="graph_name">Graphs</string>
+
     <string-array name="items_array">
         <item>Sensors</item>
         <item>Power Graph</item>
         <item>Air Temp Graph</item>
         <item>Ph Graph</item>
         <item>Humidity Graph</item>
-        <item>Water Temp Graph</item> 
+        <item>Water Temp Graph</item>
         <item>Timers</item>
     </string-array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
@@ -45,26 +48,35 @@
     <string name="graph">Graphs layout</string>
     <string name="timer">Timers layout</string>
     <string name="ph_graph">Ph Graph</string>
-	<string name="water_graph">Water Graph</string>
-	<string name="temp_graph">Temperature Graph</string>
-	<string name="power_graph">Power Graph</string>
-	<string name="light_graph">Light Graph</string>
-	<string name= "humidity_graph">Humidity Graph</string> 
-	<string name="lights_state">Lights</string>
-	<string name="fan_state">Fans</string>
-	<string name="water_pump_state"> H20</string>
-	<string name="signal_strength">Signal Strength : </string>
-	<string name="signal_reading">signal</string>
-	<string name="current_timer">Current Timer</string>
-	<string name="over_ride">Override Switch</string>
-	<string name="num_of_stages_prompt">How many grow stages would you like to use?</string>
-	<string name="grow_setup">Grow Setup</string>
-	<string name="grow_type_question">What type of plant would you like to grow?</string>
-	<string name="plant_type_hint">e.g. Tomato</string>
-	<string name="minus">-</string>
-	<string name="plus">+</string>
-	<string name="next">Next</string>
-	<string name="stage_length_question">How long do you want each stage to last?</string>
-	<string name="stage">Stage</string>
-	<string name="length">Length</string>	
+    <string name="water_graph">Water Graph</string>
+    <string name="temp_graph">Temperature Graph</string>
+    <string name="power_graph">Power Graph</string>
+    <string name="light_graph">Light Graph</string>
+    <string name="humidity_graph">Humidity Graph</string>
+    <string name="lights_state">Lights</string>
+    <string name="fan_state">Fans</string>
+    <string name="water_pump_state"> H20</string>
+    <string name="signal_strength">Signal Strength : </string>
+    <string name="signal_reading">signal</string>
+    <string name="current_timer">Current Timer</string>
+    <string name="over_ride">Override Switch</string>
+    <string name="num_of_stages_prompt">How many grow stages would you like to use?</string>
+    <string name="grow_setup">Grow Setup</string>
+    <string name="grow_type_question">What type of plant would you like to grow?</string>
+    <string name="plant_type_hint">e.g. Tomato</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="next">Next</string>
+    <string name="stage_length_question">How long do you want each stage to last?</string>
+    <string name="stage">Stage</string>
+    <string name="length">Length</string>
+    <string name="module_name">module_name</string>
+    <string name="plant_name">Tomatoes</string>
+    <string name="minimum">Min :</string>
+    <string name="maximum">Max :</string>
+    <string name="minimum_value">0.0</string>
+    <string name="maximum_value">99.0</string>
+    <string name="sensor_title">sensor_title</string>
+    <string name="state_image">state_image</string>
+
 </resources>

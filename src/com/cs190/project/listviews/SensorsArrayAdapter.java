@@ -21,13 +21,12 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 	
 	private SparseArray<View> view = new SparseArray<View>();
 
-	public SensorsArrayAdapter(Context context, int resource,
-			ArrayList<SensorModel> objects) 
+	public SensorsArrayAdapter(Context context, int resource, ArrayList<SensorModel> objects) 
 	{
 		super(context, resource, objects);
 		this.context = context;
 		this.mSensorList = objects;
-		
+		 
 	}
 	
 	
@@ -58,6 +57,8 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		
 		name.setText(mSensorList.get(position).getName());
 		reading.setText(mSensorList.get(position).getReading());
+		
+		
 		
 		return view.get(position);
 		

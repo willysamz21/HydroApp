@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cs190.project.HydroApp.WirelessModel;
@@ -36,7 +37,7 @@ public class WirelessArrayAdapter extends ArrayAdapter<WirelessModel> {
 	{	
 		if(view.get(position) == null)
 		{
-			Log.v("getView", "null");
+			Log.v("getView", "null"); 
 			LayoutInflater inflater = (LayoutInflater) this.context
 			        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
@@ -45,9 +46,14 @@ public class WirelessArrayAdapter extends ArrayAdapter<WirelessModel> {
 		}
 		
 		TextView name = (TextView) view.get(position).findViewById(R.id.label);
-		
 		name.setText(mWirelessList.get(position).getName());
 		
+		ImageView state = (ImageView) view.get(position).findViewById(R.id.state_image);
+		boolean stateIsOn = mWirelessList.get(position).isState();
+		if(stateIsOn){
+			state.setImageResource(R.drawable.rsz_led_green_black);
+		}
+
 		return view.get(position);
 	
 		

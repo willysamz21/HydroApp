@@ -10,6 +10,7 @@ public class WirelessModel {
 	private String _id;
 	private List<SensorReading> data = new ArrayList<SensorReading>();
 	private Timer timer;
+	private boolean state;
 	
 	public String getName() {
 	return name;
@@ -49,6 +50,14 @@ public class WirelessModel {
 	
 	public void setTimer(Timer timer) {
 	this.timer = timer;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 	
 

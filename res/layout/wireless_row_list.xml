@@ -18,9 +18,17 @@
         android:textStyle="bold" >
     </TextView>
 
+    <ImageView
+        android:id="@+id/state_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/arrowList"
+        android:src="@drawable/rsz_led_red_black" />
+
     <!-- Rightend Arrow -->
- 
-        
+
     <ImageView
         android:id="@+id/arrowList"
         android:layout_width="wrap_content"
