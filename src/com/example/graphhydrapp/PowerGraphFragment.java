@@ -34,6 +34,7 @@ public class PowerGraphFragment extends Fragment {
 		for(int i = 0; i < x.length; i++){
 			series.add(x[i], y[i]);
 		}
+		
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		dataset.addSeries(series);
 		
@@ -41,18 +42,23 @@ public class PowerGraphFragment extends Fragment {
 		renderer.setPointStyle(PointStyle.CIRCLE);
 		renderer.setFillPoints(true);
 		renderer.setLineWidth(3);
-		
+	
 		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 		mRenderer.addSeriesRenderer(renderer);
 		mRenderer.setXTitle("Days of Growth");
 		mRenderer.setYTitle("Power Usage");
-		mRenderer.setGridColor(3);
+		
+		mRenderer.setZoomEnabled(true);
+		mRenderer.setZoomButtonsVisible(true);
+		
 		mRenderer.setChartTitle("Power Graph");
+		mRenderer.setChartTitleTextSize(24);
 		mRenderer.setApplyBackgroundColor(true);
 		mRenderer.setBackgroundColor(Color.BLACK);
+		mRenderer.setAxisTitleTextSize(24);
 		
-    	mChartView = ChartFactory.getLineChartView( getActivity(), dataset, mRenderer);
-    	
+    	//mChartView = ChartFactory.getLineChartView( getActivity(), dataset, mRenderer);
+    	mChartView = ChartFactory.getTimeChartView( getActivity(), dataset, mRenderer, "dd-MMM");
     	View view = (LinearLayout) inflater.inflate(R.layout.fragment_power, container, false);
   		  
   		 LinearLayout powerChartContainer = (LinearLayout) view.findViewById(

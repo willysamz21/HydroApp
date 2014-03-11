@@ -165,7 +165,7 @@ public class MainActivity extends Activity {
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	        ViewHolder holder = null;
 	        int type = getItemViewType(position);
-	        System.out.println("getView " + position + " " + convertView + " type = " + type);
+	        //System.out.println("getView " + position + " " + convertView + " type = " + type);
 	        if (convertView == null) {
 	            holder = new ViewHolder();
 	            switch (type) {
@@ -258,11 +258,7 @@ public class MainActivity extends Activity {
         
         
         try {
-		   // socket = new SocketIO("http://10.0.2.2:3000");
-           // socket = new SocketIO("http://192.168.0.102:3000");
         	initializeSocket();
-			//socket.connect("http://10.0.2.2:3000",c);
-			//socket.emit("wizard:testSensors");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -270,8 +266,6 @@ public class MainActivity extends Activity {
 				Log.v("ERRRRRRROR", e.toString());
 		}
         
-        
-
         
     }
     @Override
@@ -346,7 +340,7 @@ public class MainActivity extends Activity {
     private void selectItem(int position) {
         // update the main content by replacing fragments
     	Fragment fragment = null;
-    	ListFragment listFrag = null;
+    	//ListFragment listFrag = null;
     	JSONObject o;
         switch (position){
         case 0:
@@ -354,14 +348,13 @@ public class MainActivity extends Activity {
         	break;
         case 1:
         	//Controller
-        	fragment = new TimerFragment();
-        	//fragment = new ControllerFragment();
+        	fragment = wireless;
         	break;
+//        case 3:
+//        	//power graph
+//        	fragment = new PowerGraphFragment();
+//        	break;
         case 3:
-        	//power graph
-        	fragment = new PowerGraphFragment();
-        	break;
-        case 4:
         	o = new JSONObject();
          	try {
 				o.put("name", "Air Temperature");
@@ -370,10 +363,9 @@ public class MainActivity extends Activity {
 			}
         	
         	socket.emit("data",o);
-        	//MainActivity.sensorList.get(0).getData().
-        	fragment = new TempGraphFragment();
+        	fragment = tempFragment;
         	break;
-        case 5:
+        case 4:
         	//ph graph
         	o = new JSONObject();
         	try {
@@ -383,13 +375,19 @@ public class MainActivity extends Activity {
 			}
         	socket.emit("data",o);
         	fragment = phFrag;
-        	//fragment = new PhGraphFragment();
+        	break;
+        case 5:
+        	//humidity graph
+        	o = new JSONObject();
+        	try {
+				o.put("name", "Humidity");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+        	socket.emit("data",o);
+        	fragment = humFrag;
         	break;
         case 6:
-        	//light graph
-        	fragment = new HumidityGraphFragment();
-        	break;
-        case 7:
         	//water graph
         	o = new JSONObject();
         	try {
@@ -400,10 +398,10 @@ public class MainActivity extends Activity {
         	
         	socket.emit("data",o);
         	fragment = waterFrag;
-        	//fragment = new WaterGraphFragment();
         	break;
         default:
         	return;
+        
         	//fragment = new ControllerFragment();
         	//break;
         }
