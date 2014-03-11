@@ -12,6 +12,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.app.Fragment;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,6 +89,8 @@ public class HumidityGraphFragment extends Fragment {
   		        R.id.humidity_chart_container);
     	humChartContainer.addView(mChartView);
 	}
+	
+	
     @Override
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,4 +98,6 @@ public class HumidityGraphFragment extends Fragment {
     	View view = (LinearLayout) inflater.inflate(R.layout.fragment_humidity, container, false);
     	return view;
     }
+    
+    
 }
