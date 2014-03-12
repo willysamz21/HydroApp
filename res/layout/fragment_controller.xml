@@ -8,16 +8,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-
-    <TextView
-        android:id="@+id/SignalStrength"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/signal_strength"
-        android:textColor="#ffffff"
-        android:textSize="20sp" />
+    
+    <ListView
+	        android:id="@+id/listview"
+	        android:layout_width="wrap_content"
+	        android:layout_below="@+id/overRide"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="17dp"
+	        android:top="20dp"
+	        android:divider="#fff"
+	        android:dividerHeight="1dp" >
+	 </ListView>
     <!--
       <TextView
         android:id="@+id/SignalReading"
@@ -31,6 +33,15 @@
         android:text="@string/signal_reading" />
     -->
 
+    <ImageView
+        android:id="@+id/signal_strength_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/SignalStrength"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/SignalStrength"
+        android:src="@drawable/stat_sys_signal_0_cdma" />
+
     <ToggleButton
         android:id="@+id/overRide"
         android:layout_width="wrap_content"
@@ -38,9 +49,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="@drawable/bgtoggle"
-        android:button="@null"
-        android:textOff=""
-        android:textOn="" />
+        android:button="@null" />
 
     <TextView
         android:id="@+id/textView1"
@@ -48,28 +57,31 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/overRide"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/over_ride"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff" />
 
     <TextView
-        android:id="@+id/CurrentTimer"
+        android:id="@+id/SignalStrength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/current_timer"
+        android:layout_marginTop="70dp"
+        android:text="@string/signal_strength"
         android:textColor="#ffffff"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
-    <ImageView
-        android:id="@+id/signal_strength_image"
+    <TextView
+        android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/SignalStrength"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        android:src="@drawable/stat_sys_signal_0_cdma" />
+        android:layout_alignLeft="@+id/listview"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

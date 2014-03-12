@@ -37,7 +37,6 @@ public class WirelessArrayAdapter extends ArrayAdapter<WirelessModel> {
 	{	
 		if(view.get(position) == null)
 		{
-			Log.v("getView", "null"); 
 			LayoutInflater inflater = (LayoutInflater) this.context
 			        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
@@ -49,10 +48,12 @@ public class WirelessArrayAdapter extends ArrayAdapter<WirelessModel> {
 		name.setText(mWirelessList.get(position).getName());
 		
 		ImageView state = (ImageView) view.get(position).findViewById(R.id.state_image);
-		boolean stateIsOn = mWirelessList.get(position).isState();
+		boolean stateIsOn = mWirelessList.get(position).getState();
 		if(stateIsOn){
 			state.setImageResource(R.drawable.rsz_led_green_black);
 		}
+		else
+			state.setImageResource(R.drawable.rsz_led_red_black);
 
 		return view.get(position);
 	
