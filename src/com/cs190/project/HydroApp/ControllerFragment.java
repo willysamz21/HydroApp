@@ -59,7 +59,7 @@ public class ControllerFragment extends Fragment implements OnClickListener {
 
 
 		overRide = (ToggleButton) rootView.findViewById(R.id.overRide);
-
+		overRide.setChecked(MainActivity.wirelessList.get(position).getState());
 
 		TextView name = (TextView) rootView.findViewById(R.id.label);
 		name.setText(MainActivity.wirelessList.get(position).getName());
