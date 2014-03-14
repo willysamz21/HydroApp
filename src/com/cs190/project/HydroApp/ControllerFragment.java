@@ -44,14 +44,14 @@ public class ControllerFragment extends Fragment implements OnClickListener {
 		//int signalStrength = MainActivity.wirelessList.get(wirelessID).getSignalStrength().intValue();
 		int signalStrength = 70;
 		if (20<signalStrength && signalStrength<40)
-			signalStrengthImageView.setImageResource(R.drawable.stat_sys_signal_1_cdma);
+			signalStrengthImageView.setImageResource(R.drawable.statsyssignal1cdma96x96);
 		else if (40<signalStrength && signalStrength<60)
-			signalStrengthImageView.setImageResource(R.drawable.stat_sys_signal_2_cdma);
+			signalStrengthImageView.setImageResource(R.drawable.statsyssignal2cdma96x96);
 		else if (60<signalStrength && signalStrength<80)
-			signalStrengthImageView.setImageResource(R.drawable.stat_sys_signal_3_cdma);
+			signalStrengthImageView.setImageResource(R.drawable.statsyssignal3cdma96x96);
 		else if (80<signalStrength)
-			signalStrengthImageView.setImageResource(R.drawable.stat_sys_signal_4_cdma);
-
+			signalStrengthImageView.setImageResource(R.drawable.statsyssignal4cdma96x96);
+ 
 				//fans = (ToggleButton) rootView.findViewById(R.id.toggleButton2);	
 				overRide = (ToggleButton) rootView.findViewById(R.id.overRide);
 		//waterPump = (ToggleButton) rootView.findViewById(R.id.toggleButton3);
