@@ -12,6 +12,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.app.Fragment;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,88 +34,70 @@ public class HumidityGraphFragment extends Fragment {
 	Date [] y1;//date
 	 
 	public void update() {
-		SensorModel humiditySensor = MainActivity.sensorList.get(3);
-		
+		SensorModel humiditySensor = MainActivity.sensorList.get(3);	
     	ArrayList<SensorReading> humidityReading = humiditySensor.getData();
-    	//x1 = new Double[airTempReading.size()];
-    	//y1 = new Date[airTempReading.size()];
-    	
-    	GraphicalView mChartView = null;
+    	GraphicalView mChartView = null;		
+		TimeSeries series = new TimeSeries("Grow");
+		TimeSeries series2 = new TimeSeries("Max");
+		TimeSeries series3 = new TimeSeries("Min");
 		
-		TimeSeries series = new TimeSeries("line");
     	for(int i = 0; i< humidityReading.size();i++){
-    		//x1[i] = airTempReading.get(i).getValue();
-    		//y1[i] = airTempReading.get(i).getConvertedDate();
-    		series.add(humidityReading.get(i).getConvertedDate(), humidityReading.get(i).getValue());	
-    		//Log.v("Date", humidityReading.get(i).getConvertedDate().toString());
-    		//Log.v("Values", humidityReading.get(i).getValue().toString());
-    		
+    		series.add(humidityReading.get(i).getConvertedDate(), humidityReading.get(i).getValue());
+    		series2.add(humidityReading.get(i).getConvertedDate(), humiditySensor.getMax());
+    		series3.add(humidityReading.get(i).getConvertedDate(), humiditySensor.getMin());
     	}
     
     	XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		dataset.addSeries(series);
-		//dataset.addSeries(series2);
+		dataset.addSeries(series2);
+		dataset.addSeries(series3);
 		
 		//main line
 		XYSeriesRenderer renderer = new XYSeriesRenderer();
 		renderer.setPointStyle(PointStyle.CIRCLE);
 		renderer.setFillPoints(true);
 		renderer.setLineWidth(3);
+		
+		//max
+		XYSeriesRenderer renderer2 = new XYSeriesRenderer();
+		renderer2.setColor(Color.RED);
+		renderer2.setLineWidth(3);
+				
+				//min
+		XYSeriesRenderer renderer3 = new XYSeriesRenderer();
+		renderer3.setColor(Color.RED);
+		renderer3.setLineWidth(3);
+				
 		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 		mRenderer.addSeriesRenderer(renderer);
-		//mRenderer.addSeriesRenderer(renderer2);
-		//mRenderer.setYAxisMin(10.0);
-		//mRenderer.setYAxisMax(30.0);
-		renderer.setChartValuesTextSize(20);
+		mRenderer.addSeriesRenderer(renderer2);
+		mRenderer.addSeriesRenderer(renderer3);
+		
 		mRenderer.setAxisTitleTextSize(24);
-		mRenderer.setXTitle("Days of Growth");
-		mRenderer.setYTitle("Humidity");
-		//mRenderer.setGridColor(3);
+		mRenderer.setXTitle("Days of Grow");
+		mRenderer.setYTitle("%");
+		mRenderer.setYLabelsPadding(15);
+		mRenderer.setZoomEnabled(true);
+		mRenderer.setZoomButtonsVisible(true);
 		mRenderer.setChartTitle("Humidity Graph");
 		mRenderer.setApplyBackgroundColor(true);
 		mRenderer.setBackgroundColor(Color.BLACK);
-		mChartView = ChartFactory.getLineChartView( getActivity(), dataset, mRenderer);
+		mRenderer.setLabelsTextSize(18);
+		mChartView = ChartFactory.getTimeChartView( getActivity(), dataset, mRenderer, "M/dd/yy  HH:mm");
 		
 		LinearLayout humChartContainer = (LinearLayout) getView().findViewById(
   		        R.id.humidity_chart_container);
     	humChartContainer.addView(mChartView);
 	}
+	
+	
     @Override
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//    	int [] x = { 1,2,3,4,5,6,7,8,9,10};
-//		int [] y = { 50, 78,90,110 , 145, 90, 75 ,111, 30, 145};
-//		GraphicalView mChartView = null;
-//		
-//		TimeSeries series = new TimeSeries("line");
-//		for(int i = 0; i < x.length; i++){
-//			series.add(x[i], y[i]);
-//		}
-//		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-//		dataset.addSeries(series);
-//		
-//		XYSeriesRenderer renderer = new XYSeriesRenderer();
-//		renderer.setPointStyle(PointStyle.CIRCLE);
-//		renderer.setFillPoints(true);
-//		renderer.setLineWidth(3);
-//		
-//		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
-//		mRenderer.addSeriesRenderer(renderer);
-//		mRenderer.setXTitle("Days of Growth");
-//		mRenderer.setYTitle("Humidity");
-//		mRenderer.setGridColor(3);
-//		mRenderer.setChartTitle("Humidity Graph");
-//		mRenderer.setApplyBackgroundColor(true);
-//		mRenderer.setBackgroundColor(Color.BLACK);
-    	
-    	//mChartView = ChartFactory.getLineChartView( getActivity(), dataset, mRenderer);
     	
     	View view = (LinearLayout) inflater.inflate(R.layout.fragment_humidity, container, false);
-  		  
-//  		 LinearLayout lightChartContainer = (LinearLayout) view.findViewById(
-//  		        R.id.humidity_chart_container);
-//    	lightChartContainer.addView(mChartView);
-    	
     	return view;
     }
+    
+    
 }

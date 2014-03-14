@@ -53,7 +53,7 @@ public class WirelessModel {
 		this.timer = timer;
 	}
 
-	public boolean isState() {
+	public boolean getState() {
 		return state;
 	}
 

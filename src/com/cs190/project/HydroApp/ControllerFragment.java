@@ -1,5 +1,7 @@
 package com.cs190.project.HydroApp;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.android.navigationdrawerexample.R;
@@ -18,30 +23,23 @@ import com.example.android.navigationdrawerexample.R;
 //This is really the fragment for the sensors, if i have time i will refactor to better naming practices, dp
 public class ControllerFragment extends Fragment implements OnClickListener {
 
-
-
 	public ControllerFragment() {}
-	//Boolean fansOn = MainActivity.c.isFansOn();
-	//Boolean lightsOn = MainActivity.c.isLightsOn();
-	// Boolean waterPumpOn = MainActivity.c.isWaterPumpOn();
-	//Boolean fansOn = true;
 	Boolean lightsOn = false;
-	//Boolean waterPumpOn = true;
-	//ToggleButton fans;
 	ToggleButton overRide;
-	//ToggleButton waterPump;
+	ArrayList<Timer> timers = new ArrayList<Timer>();
+	ArrayAdapter<Timer> adapter;
+	Bundle b;
+	int position;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView =  inflater.inflate(R.layout.fragment_controller, container, false);
+		b = getArguments();
+		position = b.getInt("wirelessID");
+		View rootView = inflater.inflate(R.layout.fragment_controller, container, false);
 
-		//TextView s1 = (TextView)rootView.findViewById(R.id.CurrentTimer);
-		// MainActivity.c.setCurrentTimer(s1);
-		//MainActivity.c.setSignalStrength(s2);
 		ImageView signalStrengthImageView = (ImageView)(rootView.findViewById(R.id.signal_strength_image));
 		int wirelessID = ((Integer) (getArguments().get("wirelessID"))).intValue();
-		//int signalStrength = MainActivity.wirelessList.get(wirelessID).getSignalStrength().intValue();
 		int signalStrength = 70;
 		if (20<signalStrength && signalStrength<40)
 			signalStrengthImageView.setImageResource(R.drawable.statsyssignal1cdma96x96);
@@ -51,27 +49,20 @@ public class ControllerFragment extends Fragment implements OnClickListener {
 			signalStrengthImageView.setImageResource(R.drawable.statsyssignal3cdma96x96);
 		else if (80<signalStrength)
 			signalStrengthImageView.setImageResource(R.drawable.statsyssignal4cdma96x96);
- 
-				//fans = (ToggleButton) rootView.findViewById(R.id.toggleButton2);	
-				overRide = (ToggleButton) rootView.findViewById(R.id.overRide);
-		//waterPump = (ToggleButton) rootView.findViewById(R.id.toggleButton3);
 
-		//        	 if(fansOn){
-		//        		 fans.setChecked(true);
-		//        	 }
-		//        	 if(waterPumpOn){
-		//        		waterPump.setChecked(true);
-		//        	 }
-		//        	 if(lightsOn){
-		//        		 lights.setChecked(true);
-		//        	 }
+		timers.add(MainActivity.wirelessList.get(position).getTimer());
+		adapter = new ArrayAdapter<Timer>(getActivity(), R.layout.timer_list_row, timers);
 
-		//        	 fans.setOnClickListener(new View.OnClickListener(){
-		//        		 public void onClick(View v){
-		//        			 fansOn = !fansOn;
-		//        			 Log.v("Value of fanson", fansOn.toString());
-		//        		 }
-		//        	 });
+		ListView listView = (ListView) rootView.findViewById(R.id.listview);
+		listView.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
+
+
+		overRide = (ToggleButton) rootView.findViewById(R.id.overRide);
+
+
+		TextView name = (TextView) rootView.findViewById(R.id.label);
+		name.setText(MainActivity.wirelessList.get(position).getName());
 
 		overRide.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
@@ -87,26 +78,20 @@ public class ControllerFragment extends Fragment implements OnClickListener {
 				Log.v("Controller", "obj: " + obj);
 				if(!lightsOn)
 				{
+					MainActivity.wirelessList.get(position).setState(true);
 					MainActivity.socket.emit("wireless:turnOn", obj);
 					lightsOn = true;
 				}
 				else
 				{
+					MainActivity.wirelessList.get(position).setState(false);
 					MainActivity.socket.emit("wireless:turnOff", obj);
 					lightsOn = false;
 				}
 
-
-
 			}
 		});
 
-		//        	 waterPump.setOnClickListener(new View.OnClickListener(){
-		//        		 public void onClick(View v){
-		//        			 waterPumpOn = !waterPumpOn;
-		//        			 Log.v("Value of waterPumpon", waterPumpOn.toString());
-		//        		 }
-		//        	 });
 
 		return rootView;
 	}

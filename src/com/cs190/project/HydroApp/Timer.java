@@ -21,6 +21,12 @@ public class Timer {
 	this.duration = duration;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return timeOn + "duration: " + duration;
+	}
+	
 	
 
 }
