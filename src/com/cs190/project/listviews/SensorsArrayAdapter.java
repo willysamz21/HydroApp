@@ -77,6 +77,11 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 			myReading += "%";
 		}
 		
+		ImageView trendArrow = (ImageView) view.get(position).findViewById(R.id.trendArrow);
+		if(mSensorList.get(position).getTrendArrowImageSource() != null && mSensorList.get(position).getTrendArrowImageSource() != -1){
+			trendArrow.setImageResource(mSensorList.get(position).getTrendArrowImageSource());
+			trendArrow.setVisibility(View.VISIBLE);
+		}
 		
 		name.setText(myName);
 		reading.setText(myReading);

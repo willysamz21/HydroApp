@@ -1,7 +1,8 @@
 package com.cs190.project.HydroApp;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import android.widget.ImageView;
 
 public class SensorModel {
 
@@ -11,6 +12,7 @@ public class SensorModel {
 	private String name;
 	private String reading;
 	private ArrayList<SensorReading> data = new ArrayList<SensorReading>();
+	private Integer trendArrowImageSource;
 
 	public String get_id() {
 		return _id;
@@ -58,6 +60,15 @@ public class SensorModel {
 	
 	public void setReading(String reading){
 		this.reading = reading;
+	}
+
+
+	public Integer getTrendArrowImageSource() {
+		return trendArrowImageSource;
+	}
+
+	public void setTrendArrowImageSource(Integer trendArrowImageSource) {
+		this.trendArrowImageSource = trendArrowImageSource;
 	}
 
 }

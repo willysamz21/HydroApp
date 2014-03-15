@@ -52,7 +52,7 @@ public class WaterGraphFragment extends Fragment {
 		dataset.addSeries(series2);
 		dataset.addSeries(series3);
 		
-		//main line
+		//main line  
 		XYSeriesRenderer renderer = new XYSeriesRenderer();	
 		renderer.setPointStyle(PointStyle.CIRCLE);
 		renderer.setFillPoints(true);
