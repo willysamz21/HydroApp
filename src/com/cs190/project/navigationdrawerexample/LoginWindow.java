@@ -66,6 +66,7 @@ public class LoginWindow extends Activity {
 		me = this;
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);
+		setContentView(R.layout.activity_login_window);
 		if(hasLoggedIn)
 		{
 			Intent main =new Intent(me, MainActivity.class);
@@ -73,8 +74,7 @@ public class LoginWindow extends Activity {
 			finish();
 		}
 
-		setContentView(R.layout.activity_login_window);
-
+		
 		// Set up the login form.
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
@@ -98,6 +98,10 @@ public class LoginWindow extends Activity {
 		mLoginStatusView = findViewById(R.id.login_status);
 		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
 
+		
+		mEmailView.setVisibility((View.VISIBLE));
+		findViewById(R.id.sign_in_button).setVisibility((View.VISIBLE));
+		mPasswordView.setVisibility((View.VISIBLE));
 		findViewById(R.id.sign_in_button).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
