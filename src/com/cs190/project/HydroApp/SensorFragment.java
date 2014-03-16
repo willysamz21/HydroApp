@@ -1,8 +1,13 @@
 package com.cs190.project.HydroApp;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
@@ -11,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -23,9 +29,8 @@ public class SensorFragment extends ListFragment{
 	public View rootView;
 	SensorUniqueFragment fragment = null;
 	private Boolean createdyet = false;
-
-	static final int NUMBER_OF_VALUES_FOR_TREND = 3;
-
+	private int readingCounter = 0;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState); 
 	} 
@@ -53,68 +58,26 @@ public class SensorFragment extends ListFragment{
 			fragment.updateFragmentDisplay();
 
 		String[] readings = {ph, water, air, humidity};
-
+		readingCounter++;
 		for(int i = 0; i < MainActivity.sensorList.size(); i++)
 		{  
-			MainActivity.sensorList.get(i).setReading(readings[i]);
-
-			SensorModel sensor = MainActivity.sensorList.get(i);
-			ArrayList<SensorReading> readValues = sensor.getData();
-			Double[] values = new Double[NUMBER_OF_VALUES_FOR_TREND];
-			
-//			if(i==0){
-//				Double[] values_init = {-1.0, -2.0, -3.0};
-//				values = Arrays.copyOf(values_init, 3);
-//			}else if(i==1){
-//				Double[] values_init = {1.0, 2.0, 3.0};
-//				values = Arrays.copyOf(values_init, 3);
-//			}else if(i==2){
-//				Double[] values_init = {1.0, 2.0, -3.0};
-//				values = Arrays.copyOf(values_init, 3);
-//			}else {
-//				Double[] values_init = {1.0, 2.0, 3.0};
-//				values = Arrays.copyOf(values_init, 3);
-//			}
-			
-			if(readValues.size() > 0){
-				int index1 = 0;
-				int index2 = readValues.size() - 1; 
-				while(index2 > readValues.size()-1-NUMBER_OF_VALUES_FOR_TREND){
-					values[index1] = readValues.get(index2).getValue();
-					index1++;
-					index2--;
-				}
-//				Log.d("values = ", Arrays.toString(values));
-
-				boolean trendDown = false; 
-				boolean trendUp = false; 
-				int indexTrendDown = 0;
-				int indexTrendUp = 0;
-				while(indexTrendDown<values.length-1){
-					if(values[indexTrendDown] > values[indexTrendDown+1])
-						indexTrendDown++;
-					else
-						break;
-				}
-				if(indexTrendDown == values.length-1)
-					trendDown = true;
-				while(indexTrendUp<values.length-1){
-					if(values[indexTrendUp] < values[indexTrendUp+1])
-						indexTrendUp++;
-					else
-						break;
-				}
-				if(indexTrendUp == values.length-1)
-					trendUp = true;
-
-				if(trendDown)
-					MainActivity.sensorList.get(i).setTrendArrowImageSource(R.drawable.downgreenarrow39x39);
-				else if(trendUp)
-					MainActivity.sensorList.get(i).setTrendArrowImageSource(R.drawable.upgreenarrow39x39);
-				else
-					MainActivity.sensorList.get(i).setTrendArrowImageSource(-1);
+			if(readingCounter >= 240){
+				Calendar c = new GregorianCalendar();
+				SensorReading sr = new SensorReading();
+				SimpleDateFormat f = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH);
+				String dateStr = f.format(c.getTime());
+				sr.setDate(dateStr);
+				sr.setValue(Double.valueOf((readings[i])));
+				MainActivity.sensorList.get(i).getData().add(sr);
+				MainActivity.sensorList.get(i).setTrend();
+				
 			}
+			MainActivity.sensorList.get(i).setReading(readings[i]);
+			
 		}
+		if(readingCounter >= 240)
+			readingCounter = 0;
+		
 		adapter.notifyDataSetChanged();	
 
 	}

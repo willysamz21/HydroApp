@@ -61,9 +61,10 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		
 		TextView name = (TextView) view.get(position).findViewById(R.id.label);
 		TextView reading = (TextView) view.get(position).findViewById(R.id.value);
-		
+		ImageView trendArrow = (ImageView) view.get(position).findViewById(R.id.trendArrow);
 		String myName = mSensorList.get(position).getName();
 		String myReading = mSensorList.get(position).getReading();
+		int arrow = mSensorList.get(position).getTrend();
 		
 		if(myName.equalsIgnoreCase("ph")){
 			reading.setTextColor(pHColor(myReading));
@@ -77,11 +78,14 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 			myReading += "%";
 		}
 		
-		ImageView trendArrow = (ImageView) view.get(position).findViewById(R.id.trendArrow);
-		if(mSensorList.get(position).getTrendArrowImageSource() != null && mSensorList.get(position).getTrendArrowImageSource() != -1){
-			trendArrow.setImageResource(mSensorList.get(position).getTrendArrowImageSource());
+		
+			if(arrow == 0)
+				trendArrow.setImageResource(R.drawable.downgreenarrow39x39);
+			else if (arrow == 1)
+				trendArrow.setImageResource(R.drawable.upgreenarrow39x39);
+			else
+				trendArrow.setImageResource(R.drawable.downgreenarrow39x39);
 			trendArrow.setVisibility(View.VISIBLE);
-		}
 		
 		name.setText(myName);
 		reading.setText(myReading);
