@@ -1,13 +1,18 @@
 package com.cs190.project.HydroApp;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
+import com.cs190.project.UserConfiguration.Stage;
 import com.example.android.navigationdrawerexample.R;
 
 public class NewGrowConfigActivity extends FragmentActivity {
+	
+	public static ArrayList<Stage> stages;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

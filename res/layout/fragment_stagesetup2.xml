@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" >
     
 	<TextView android:id="@+id/stageLengthPromt"
 		android:layout_width="match_parent"
@@ -46,8 +46,43 @@
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
 	    android:gravity="center"
+	    android:inputType="phone"
+		android:digits="1234567890"
 	    android:layout_below="@id/stageLengthLabel"
-	    android:layout_margin="20dp" />
+	    android:layout_margin="10dp" />
+	
+	<RelativeLayout android:id="@+id/datePickerLayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	   	android:layout_centerHorizontal="true"
+	    android:gravity="center"
+	    android:layout_below="@id/stageLengthPicker"
+	    android:layout_margin="5dp" >
+	    
+	    <TextView android:id="@+id/datePickerText"
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_margin="5dp"
+	    	android:text="@string/date_picker_title"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    <Button android:id="@+id/datePickerButton"
+			android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datePickerText"
+           	android:textAppearance="?android:attr/textAppearanceLarge" />
+        	  
+	</RelativeLayout>
+	
+	<Button
+        android:id="@+id/next2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@id/datePickerLayout"
+        android:text="@string/next" /> 
     
 
 </RelativeLayout>

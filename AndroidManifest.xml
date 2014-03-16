@@ -35,10 +35,7 @@
             android:name="com.cs190.project.HydroApp.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:name="com.cs190.project.navigationdrawerexample.LoginWindow"
@@ -53,7 +50,10 @@
         <activity
             android:name="com.cs190.project.HydroApp.NewGrowConfigActivity"
             android:label="@string/app_name" >
-			
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -78,5 +78,28 @@
     <string name="maximum_value">99.0</string>
     <string name="sensor_title">sensor_title</string>
     <string name="state_image">state_image</string>
-
+    <string name="date_picker_title">Stage 1 Start Date:</string>
+    <string name="ph_level">pH Level</string>
+    <string name="water_temp">Water Temperature</string>
+    <string name="air_temp">Air Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="min">Min</string>
+    <string name="max">Max</string>
+    <string name="seven_eight">78</string>
+    <string name="seven_nine">79</string>
+    <string name="three_four">34</string>
+    <string name="three_eight">38</string>
+    <string name="wireless_prompt">There are 3 wireless devices connected. What would you like them to be called?</string>
+    <string name="wireless">Wireless</string>
+    <string name="name">Name</string>
+    <string name="number1">1</string>
+    <string name="number2">2</string>
+    <string name="number3">3</string>
+    <string name="wireless1">Wireless 1</string>
+    <string name="wireless2">Wireless 2</string>
+    <string name="wireless3">Wireless 3</string>
+    <string name="timers">Timers</string>
+    <string name="wireless_device">Wireless Device</string>
+    
+    
 </resources>
