@@ -1,14 +1,20 @@
 package com.cs190.project.navigationdrawerexample;
 
+import com.cs190.project.HydroApp.MainActivity;
+import com.cs190.project.HydroApp.NewGrowConfigActivity;
 import com.example.android.navigationdrawerexample.R;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -45,24 +51,34 @@ public class LoginWindow extends Activity {
 	// Values for email and password at the time of the login attempt.
 	private String mEmail;
 	private String mPassword;
-
+	public static final String PREFS_NAME = "HAsettings";
 	// UI references.
 	private EditText mEmailView;
 	private EditText mPasswordView;
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
+	private Context me;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		me = this;
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);
+		if(hasLoggedIn)
+		{
+			Intent main =new Intent(me, MainActivity.class);
+			startActivity(main);
+			finish();
+		}
 
 		setContentView(R.layout.activity_login_window);
 
 		// Set up the login form.
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
-		mEmailView.setText(mEmail);
+		mEmailView.setText("will@hydroApp.com");
 
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
@@ -230,7 +246,17 @@ public class LoginWindow extends Activity {
 			showProgress(false);
 
 			if (success) {
+				SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+				SharedPreferences.Editor editor = settings.edit();
+
+				//Set "hasLoggedIn" to true
+				editor.putBoolean("hasLoggedIn", true);
+
+				// Commit the edits!
+				editor.commit();
+				startActivity(new Intent(me, NewGrowConfigActivity.class));
 				finish();
+
 			} else {
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));

@@ -62,6 +62,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 //import android.widget.TextView;
@@ -75,6 +76,8 @@ public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
+    public static TextView myMsg;
+    public static ImageView myMsgLog;
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
@@ -93,6 +96,7 @@ public class MainActivity extends Activity {
 
 	public static class ViewHolder {
 	    public TextView textView;
+	    public ImageView  imageView;
 	}
 	
 	TempGraphFragment tempFragment = new TempGraphFragment();
@@ -172,14 +176,17 @@ public class MainActivity extends Activity {
 	                case TYPE_ITEM:
 	                    convertView = mInflater.inflate(R.layout.drawer_list_item, null);
 	                    holder.textView = (TextView)convertView.findViewById(R.id.text);
+	                    holder.imageView = (ImageView)convertView.findViewById(R.id.image);
 	                    break;
 	                case TYPE_SEPARATOR:
 	                    convertView = mInflater.inflate(R.layout.drawer_list_item2, null);
-	                    holder.textView = (TextView)convertView.findViewById(R.id.textSeparator);
+	                    holder.textView = (TextView)convertView.findViewById(R.id.textSeperator);
+	                    holder.imageView = (ImageView)convertView.findViewById(R.id.image2);
 	                    break;
 	                case TYPE_SEPARATED:
 	                    convertView = mInflater.inflate(R.layout.drawer_list_item3, null);
 	                    holder.textView = (TextView)convertView.findViewById(R.id.textSeparated);
+	                    holder.imageView = (ImageView)convertView.findViewById(R.id.image3);
 	                    break;
 	            }
 	            convertView.setTag(holder);
@@ -187,6 +194,12 @@ public class MainActivity extends Activity {
 	            holder = (ViewHolder)convertView.getTag();
 	        }
 	        holder.textView.setText(mData.get(position));
+            if(mData.get(position).equalsIgnoreCase("sensors"))
+            	holder.imageView.setImageResource(R.drawable.sensor);
+            else if(mData.get(position).equalsIgnoreCase("timers"))
+            	holder.imageView.setImageResource(R.drawable.timer);
+            else if(mData.get(position).contains("Graphs"))
+            	holder.imageView.setImageResource(R.drawable.graphs2);
 	        return convertView;
 	    }
 
@@ -197,10 +210,6 @@ public class MainActivity extends Activity {
     	final Context context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-    	
-//        if(!login)
-//        startActivity(new Intent(context, LoginWindow.class));
         PACKAGE_NAME = getApplicationContext().getPackageName();
         
         mTitle = mDrawerTitle = getTitle();
@@ -436,6 +445,8 @@ public class MainActivity extends Activity {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
+        myMsg = (TextView) findViewById(R.id.mymsg);
+        myMsgLog = (ImageView) findViewById(R.id.mymsglogg);
     }
 
     @Override

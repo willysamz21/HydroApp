@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   Copyright 2013 The Android Open Source Project
 
@@ -11,7 +12,7 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
+  limitations under the License.
 -->
 
 <resources>
@@ -26,7 +27,7 @@
         <item>->Air Temp Graph</item>
         <item>->Ph Graph</item>
         <item>->Humidity Graph</item>
-        <item>->Water Temp Graph</item> 
+        <item>->Water Temp Graph</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
@@ -100,6 +101,6 @@
     <string name="wireless3">Wireless 3</string>
     <string name="timers">Timers</string>
     <string name="wireless_device">Wireless Device</string>
-    
-    
+    <string name="title_activity_splashscreen">Splashscreen</string>
+
 </resources>

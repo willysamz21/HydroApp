@@ -1,5 +1,6 @@
 package com.cs190.project.HydroApp;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ public class SensorModel {
 	private ArrayList<SensorReading> data = new ArrayList<SensorReading>();
 	private Integer trendArrowImageSource;
 	private int trend;
+	private Boolean isout = false;
 
 	public SensorModel(){
 		this.trend = 0;
@@ -28,6 +30,10 @@ public class SensorModel {
 
 	public Integer getMax() {
 		return max;
+	}
+	
+	public Boolean isOutsideRange() {
+		return isout;
 	}
 
 	public void setMax(Integer max) {
@@ -78,7 +84,12 @@ public class SensorModel {
 			}
 		
 		avg /= 10;
-		
+		if(avg > max || avg < min){
+			isout = true;
+		}
+		else{
+			isout = false;
+		}
 		Double arrow =lastReading.getValue()-avg;
 		
 		if(arrow > -0.1 && arrow < 0.1 )

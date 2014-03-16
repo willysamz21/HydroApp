@@ -16,7 +16,15 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
 	android:layout_width="fill_parent">
+	
+        <ImageView
+        android:id="@+id/image3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:src="@android:color/transparent" />
 <TextView
     android:id="@+id/textSeparated"
     android:layout_width="match_parent"

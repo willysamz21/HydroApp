@@ -22,10 +22,10 @@
                 android:layout_height="wrap_content" >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/mymsglogg"
                     android:layout_width="42dp"
                     android:layout_height="54dp"
-                    android:src="@drawable/warning" />
+                    android:src="@drawable/good" />
 
                 <View
                     android:id="@+id/view1"
@@ -36,16 +36,9 @@
                     android:id="@+id/mymsg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Air Temperature is 10% different than the suggested. You might want to change the settings for the Air Temperature." />
+                    android:text="Everything looks good!" />
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="Control Panel" />
         </LinearLayout>
 
 	</LinearLayout>

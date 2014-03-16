@@ -25,6 +25,10 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 	private Context context;
 	private ArrayList<SensorModel> mSensorList = new ArrayList<SensorModel>();
     private final char degree = '\u00B0';
+    private static String phM = "";
+    private static String airM = "";
+    private static String waterM = "";
+    private static String humidM = "";
 	
 	private SparseArray<View> view = new SparseArray<View>();
 
@@ -33,7 +37,6 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		super(context, resource, objects);
 		this.context = context;
 		this.mSensorList = objects;
-		 
 	}
 	
 	
@@ -48,7 +51,6 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		reading.setText(mSensorList.get(position).getReading());
 		
 		return rowView;*/
-		
 		if(view.get(position) == null)
 		{
 			Log.v("getView", "null");
@@ -65,20 +67,29 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		String myName = mSensorList.get(position).getName();
 		String myReading = mSensorList.get(position).getReading();
 		int arrow = mSensorList.get(position).getTrend();
-		
+					
 		if(myName.equalsIgnoreCase("ph")){
+			if(mSensorList.get(position).isOutsideRange()){
+				phM = myName + " is out of range.\n";
+			}
 			reading.setTextColor(pHColor(myReading));
-			//((View) view.get(position).findViewById(R.id.backView1)).setBackgroundColor(color.white);
-			//((ImageView) view.get(position).findViewById(R.id.imageView1)).setImageResource(R.drawable.ph);
 		}
 		else if(myName.contains("Temperature")){
+			if(myName.contains("ater") && mSensorList.get(position).isOutsideRange()){
+				waterM = myName + " is out of range.\n";
+			}
+			else if(mSensorList.get(position).isOutsideRange()){
+				airM = myName + " is out of range.\n";
+			}
 			myReading += degree;
 		}
 		else if(myName.equalsIgnoreCase("humidity")){
+			if(mSensorList.get(position).isOutsideRange()){
+				humidM = myName + " is out of range.\n";
+			}
 			myReading += "%";
 		}
-		
-		
+			
 			if(arrow == 0)
 				trendArrow.setImageResource(R.drawable.downgreenarrow39x39);
 			else if (arrow == 1)
@@ -89,8 +100,15 @@ public class SensorsArrayAdapter extends ArrayAdapter<SensorModel> {
 		
 		name.setText(myName);
 		reading.setText(myReading);
-		
-		
+		if((airM + waterM + humidM + phM).contains("is")){
+				MainActivity.myMsgLog.setImageResource(R.drawable.warning);
+				MainActivity.myMsg.setText(airM + waterM + humidM + phM);
+		}
+		else{
+			MainActivity.myMsgLog.setImageResource(R.drawable.good);
+			MainActivity.myMsg.setText("Everything looks good!");
+		}
+		MainActivity.myMsg.postInvalidate();
 		
 		return view.get(position);
 		

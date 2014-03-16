@@ -13,24 +13,39 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+ <LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="wrap_content"
+	android:layout_gravity="center_vertical"
 	android:orientation="vertical"
 	android:layout_width="fill_parent">
+<LinearLayout
+	android:layout_height="wrap_content"
+	android:layout_gravity="center_vertical"
+	android:layout_width="fill_parent">
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_gravity="center_vertical"
+        android:src="@android:color/transparent" />
+	
 <TextView
-    android:id="@+id/textSeparator"
+    android:id="@+id/textSeperator"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:attr/activatedBackgroundIndicator"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:textSize="12sp"
-    android:textColor="#fff" />
+    android:textColor="#fff"
+    android:textSize="14sp"
+    android:background="?android:attr/activatedBackgroundIndicator"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
+</LinearLayout>
 <View
 	android:background="#FFF"
     android:layout_width="match_parent"
