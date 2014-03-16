@@ -237,20 +237,6 @@ public class MainActivity extends Activity {
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    	
-    	setContentView(R.layout.activity_login_window);
-    	Thread closeActivity = new Thread(new Runnable() {
-			  @Override
-			  public void run() {
-			    try {
-			      Thread.sleep(3000);
-			      // Do some stuff
-			    } catch (Exception e) {
-			      e.getLocalizedMessage();
-			    }
-			  }
-			});
-		
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = getApplicationContext();

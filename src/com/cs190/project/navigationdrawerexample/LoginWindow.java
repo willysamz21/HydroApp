@@ -67,12 +67,12 @@ public class LoginWindow extends Activity {
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);
 		setContentView(R.layout.activity_login_window);
-		if(hasLoggedIn)
+		/*if(hasLoggedIn)
 		{
 			Intent main =new Intent(me, MainActivity.class);
 			startActivity(main);
 			finish();
-		}
+		}*/
 
 		
 		// Set up the login form.
