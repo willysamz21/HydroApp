@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView android:id="@+id/wirelessPrompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/wireless_prompt"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <RelativeLayout android:id="@+id/wirelessNameLabel"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_margin="10dp"
+	    android:layout_below="@id/wirelessPrompt" >
+	
+		<TextView android:id="@+id/wirelessText"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_margin="20dp"
+	    	android:layout_alignParentLeft="true"
+	    	android:text="@string/wireless"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+		
+		<TextView android:id="@+id/nameText"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_margin="20dp"
+	    	android:layout_toRightOf="@id/wirelessText"
+	    	android:text="@string/name"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+		
+	</RelativeLayout>
+	
+    <RelativeLayout android:id="@+id/wirelessLayout1"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_below="@id/wirelessNameLabel" >
+        
+        <TextView android:id="@+id/numberText1"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginLeft="65dp"
+	    	android:layout_marginRight="78dp"
+	    	android:layout_alignParentLeft="true"
+	    	android:text="@string/number1"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <EditText android:id="@+id/name1"
+            android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content" 
+	    	android:layout_toRightOf="@id/numberText1" 
+	    	android:hint="@string/wireless1" />
+        
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/wirelessLayout2"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_below="@id/wirelessLayout1" >
+        
+        <TextView android:id="@+id/numberText2"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginLeft="65dp"
+	    	android:layout_marginRight="78dp"
+	    	android:layout_alignParentLeft="true"
+	    	android:text="@string/number2"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <EditText android:id="@+id/name2"
+            android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content" 
+	    	android:layout_toRightOf="@id/numberText2" 
+	    	android:hint="@string/wireless2" />
+        
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/wirelessLayout3"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_below="@id/wirelessLayout2" >
+        
+        <TextView android:id="@+id/numberText3"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginLeft="65dp"
+	    	android:layout_marginRight="78dp"
+	    	android:layout_alignParentLeft="true"
+	    	android:text="@string/number3"
+	    	android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <EditText android:id="@+id/name3"
+            android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content" 
+	    	android:layout_toRightOf="@id/numberText3" 
+	    	android:hint="@string/wireless3" />
+        
+    </RelativeLayout>
+    
+    <Button
+        android:id="@+id/next4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@id/wirelessLayout3"
+        android:text="@string/next" /> 
+
+</RelativeLayout>

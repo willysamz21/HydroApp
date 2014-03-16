@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >    
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	    
+	    <TextView android:id="@+id/stageTitle"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="top|center"
+	        android:layout_margin="5dp"
+	        style="?android:listSeparatorTextViewStyle"        
+	        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+	        
+	    <RelativeLayout android:id="@+id/phLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/stageTitle"
+	        style="?android:listSeparatorTextViewStyle" >
+	        
+	        <TextView android:id="@+id/phTitle"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="top|center"
+	        android:layout_margin="5dp"
+	        android:text="@string/ph_level"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <TextView
+	           android:id="@+id/min1"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignBaseline="@+id/max1"
+	           android:layout_alignBottom="@+id/max1"
+	           android:layout_alignRight="@+id/editMin1"
+	           android:layout_marginRight="41dp"
+	           android:text="@string/min"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	       <TextView
+	           android:id="@+id/max1"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignRight="@+id/editMax1"
+	           android:layout_below="@+id/phTitle"
+	           android:layout_marginRight="38dp"
+	           android:text="@string/max"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <RelativeLayout android:id="@+id/editMin1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/max1"
+	        android:layout_margin="10dp"
+	        android:layout_alignLeft="@+id/phTitle" >
+	
+		        <TextView
+		            android:id="@+id/minBox1"
+		            android:layout_width="50dp"
+		            android:layout_height="50dp"
+		            android:layout_centerVertical="true"
+		            android:layout_centerHorizontal="true"
+		            android:background="@drawable/white_square_black_border"
+		            android:gravity="center_vertical|center_horizontal"
+		            android:textColor="@android:color/black"
+		            android:textStyle="bold" />
+		        
+		        <Button
+		            android:id="@+id/minMinus1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toLeftOf="@id/minBox1"
+		            android:text="@string/minus" />
+		        
+		        <Button
+		            android:id="@+id/minPlus1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toRightOf="@id/minBox1"
+		            android:text="@string/plus" />       
+	           
+	    	</RelativeLayout>
+	    
+		    <RelativeLayout android:id="@+id/editMax1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" 
+		        android:layout_below="@id/max1"
+		        android:layout_margin="10dp"
+		        android:layout_alignRight="@+id/phTitle" >
+		
+			        <TextView
+			            android:id="@+id/maxBox1"
+			            android:layout_width="50dp"
+			            android:layout_height="50dp"
+			            android:layout_centerVertical="true"
+			            android:layout_centerHorizontal="true"
+			            android:background="@drawable/white_square_black_border"
+			            android:gravity="center_vertical|center_horizontal"
+			            android:textColor="@android:color/black"
+			            android:textStyle="bold" />
+			        
+			        <Button
+			            android:id="@+id/maxMinus1"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toLeftOf="@id/maxBox1"
+			            android:text="@string/minus" />
+			        
+			        <Button
+			            android:id="@+id/maxPlus1"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toRightOf="@id/maxBox1"
+			            android:text="@string/plus" />       
+		           
+		    </RelativeLayout>
+	    
+	    </RelativeLayout>
+	    
+	    <RelativeLayout android:id="@+id/waterTempLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/phLayout"
+	        style="?android:listSeparatorTextViewStyle" >
+	        
+	        <TextView android:id="@+id/waterTempTitle"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="top|center"
+	        android:layout_margin="5dp"
+	        android:text="@string/water_temp"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <TextView
+	           android:id="@+id/min2"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignBaseline="@+id/max2"
+	           android:layout_alignBottom="@+id/max2"
+	           android:layout_alignRight="@+id/editMin2"
+	           android:layout_marginRight="41dp"
+	           android:text="@string/min"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	       <TextView
+	           android:id="@+id/max2"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignRight="@+id/editMax2"
+	           android:layout_below="@+id/waterTempTitle"
+	           android:layout_marginRight="38dp"
+	           android:text="@string/max"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <RelativeLayout android:id="@+id/editMin2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/max2"
+	        android:layout_margin="10dp"
+	        android:layout_alignLeft="@+id/waterTempTitle" >
+	
+		        <TextView
+		            android:id="@+id/minBox2"
+		            android:layout_width="50dp"
+		            android:layout_height="50dp"
+		            android:layout_centerVertical="true"
+		            android:layout_centerHorizontal="true"
+		            android:background="@drawable/white_square_black_border"
+		            android:gravity="center_vertical|center_horizontal"
+		          	android:text="@string/seven_eight"
+		            android:textColor="@android:color/black"
+		            android:textStyle="bold" />
+		        
+		        <Button
+		            android:id="@+id/minMinus2"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toLeftOf="@id/minBox2"
+		            android:text="@string/minus" />
+		        
+		        <Button
+		            android:id="@+id/minPlus2"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toRightOf="@id/minBox2"
+		            android:text="@string/plus" />       
+	           
+	    	</RelativeLayout>
+	    
+		    <RelativeLayout android:id="@+id/editMax2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" 
+		        android:layout_below="@id/max2"
+		        android:layout_margin="10dp"
+		        android:layout_alignRight="@+id/waterTempTitle" >
+		
+			        <TextView
+			            android:id="@+id/maxBox2"
+			            android:layout_width="50dp"
+			            android:layout_height="50dp"
+			            android:layout_centerVertical="true"
+			            android:layout_centerHorizontal="true"
+			            android:background="@drawable/white_square_black_border"
+			            android:gravity="center_vertical|center_horizontal"
+			            android:text="@string/seven_nine"
+			            android:textColor="@android:color/black"
+			            android:textStyle="bold" />
+			        
+			        <Button
+			            android:id="@+id/maxMinus2"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toLeftOf="@id/maxBox2"
+			            android:text="@string/minus" />
+			        
+			        <Button
+			            android:id="@+id/maxPlus2"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toRightOf="@id/maxBox2"
+			            android:text="@string/plus" />       
+		           
+		    </RelativeLayout>
+	    
+	    </RelativeLayout>
+	    
+	    <RelativeLayout android:id="@+id/airTempLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/waterTempLayout"
+	        style="?android:listSeparatorTextViewStyle" >
+	        
+	        <TextView android:id="@+id/airTempTitle"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="top|center"
+	        android:layout_margin="5dp"
+	        android:text="@string/air_temp"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <TextView
+	           android:id="@+id/min3"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignBaseline="@+id/max3"
+	           android:layout_alignBottom="@+id/max3"
+	           android:layout_alignRight="@+id/editMin3"
+	           android:layout_marginRight="41dp"
+	           android:text="@string/min"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	       <TextView
+	           android:id="@+id/max3"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignRight="@+id/editMax3"
+	           android:layout_below="@+id/airTempTitle"
+	           android:layout_marginRight="38dp"
+	           android:text="@string/max"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <RelativeLayout android:id="@+id/editMin3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/max3"
+	        android:layout_margin="10dp"
+	        android:layout_alignLeft="@+id/airTempTitle" >
+	
+		        <TextView
+		            android:id="@+id/minBox3"
+		            android:layout_width="50dp"
+		            android:layout_height="50dp"
+		            android:layout_centerVertical="true"
+		            android:layout_centerHorizontal="true"
+		            android:background="@drawable/white_square_black_border"
+		            android:gravity="center_vertical|center_horizontal"
+		            android:text="@string/seven_eight"
+		            android:textColor="@android:color/black"
+		            android:textStyle="bold" />
+		        
+		        <Button
+		            android:id="@+id/minMinus3"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toLeftOf="@id/minBox3"
+		            android:text="@string/minus" />
+		        
+		        <Button
+		            android:id="@+id/minPlus3"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toRightOf="@id/minBox3"
+		            android:text="@string/plus" />       
+	           
+	    	</RelativeLayout>
+	    
+		    <RelativeLayout android:id="@+id/editMax3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" 
+		        android:layout_below="@id/max3"
+		        android:layout_margin="10dp"
+		        android:layout_alignRight="@+id/airTempTitle" >
+		
+			        <TextView
+			            android:id="@+id/maxBox3"
+			            android:layout_width="50dp"
+			            android:layout_height="50dp"
+			            android:layout_centerVertical="true"
+			            android:layout_centerHorizontal="true"
+			            android:background="@drawable/white_square_black_border"
+			            android:gravity="center_vertical|center_horizontal"
+			            android:text="@string/seven_nine"
+			            android:textColor="@android:color/black"
+			            android:textStyle="bold" />
+			        
+			        <Button
+			            android:id="@+id/maxMinus3"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toLeftOf="@id/maxBox3"
+			            android:text="@string/minus" />
+			        
+			        <Button
+			            android:id="@+id/maxPlus3"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toRightOf="@id/maxBox3"
+			            android:text="@string/plus" />       
+		           
+		    </RelativeLayout>
+	    
+	    </RelativeLayout>
+	    
+	    <RelativeLayout android:id="@+id/humLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/airTempLayout"
+	        style="?android:listSeparatorTextViewStyle" >
+	        
+	        <TextView android:id="@+id/humTitle"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="top|center"
+	        android:layout_margin="5dp"
+	        android:text="@string/humidity"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <TextView
+	           android:id="@+id/min4"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignBaseline="@+id/max4"
+	           android:layout_alignBottom="@+id/max4"
+	           android:layout_alignRight="@+id/editMin4"
+	           android:layout_marginRight="41dp"
+	           android:text="@string/min"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	       <TextView
+	           android:id="@+id/max4"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_alignRight="@+id/editMax4"
+	           android:layout_below="@+id/humTitle"
+	           android:layout_marginRight="38dp"
+	           android:text="@string/max"
+	           android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <RelativeLayout android:id="@+id/editMin4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/max4"
+	        android:layout_margin="10dp"
+	        android:layout_alignLeft="@+id/humTitle" >
+	
+		        <TextView
+		            android:id="@+id/minBox4"
+		            android:layout_width="50dp"
+		            android:layout_height="50dp"
+		            android:layout_centerVertical="true"
+		            android:layout_centerHorizontal="true"
+		            android:background="@drawable/white_square_black_border"
+		            android:gravity="center_vertical|center_horizontal"
+		            android:text="@string/three_four"
+		            android:textColor="@android:color/black"
+		            android:textStyle="bold" />
+		        
+		        <Button
+		            android:id="@+id/minMinus4"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toLeftOf="@id/minBox4"
+		            android:text="@string/minus" />
+		        
+		        <Button
+		            android:id="@+id/minPlus4"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toRightOf="@id/minBox4"
+		            android:text="@string/plus" />       
+	           
+	    	</RelativeLayout>
+	    
+		    <RelativeLayout android:id="@+id/editMax4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" 
+		        android:layout_below="@id/max4"
+		        android:layout_margin="10dp"
+		        android:layout_alignRight="@+id/humTitle" >
+		
+			        <TextView
+			            android:id="@+id/maxBox4"
+			            android:layout_width="50dp"
+			            android:layout_height="50dp"
+			            android:layout_centerVertical="true"
+			            android:layout_centerHorizontal="true"
+			            android:background="@drawable/white_square_black_border"
+			            android:gravity="center_vertical|center_horizontal"
+			            android:text="@string/three_eight"
+			            android:textColor="@android:color/black"
+			            android:textStyle="bold" />
+			        
+			        <Button
+			            android:id="@+id/maxMinus4"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toLeftOf="@id/maxBox4"
+			            android:text="@string/minus" />
+			        
+			        <Button
+			            android:id="@+id/maxPlus4"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_centerVertical="true"
+			            android:layout_toRightOf="@id/maxBox4"
+			            android:text="@string/plus" />       
+		           
+		    </RelativeLayout>
+	    
+	    </RelativeLayout>
+	    
+	    <RelativeLayout android:id="@+id/timerLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@id/humLayout"
+	        style="?android:listSeparatorTextViewStyle" >
+		    
+	        <TextView android:id="@+id/timerTitle"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="top|center"
+	        android:layout_margin="5dp"
+	        android:text="@string/timers"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	        
+	        <Spinner android:id="@+id/wirelessSpinner"
+   	 			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:layout_below="@id/timerTitle"
+    			android:prompt="@string/wireless_device" />
+	        
+	        <Button android:id="@+id/timePickerButton1"
+				android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/timerTitle"
+	            android:layout_toRightOf="@id/wirelessSpinner" />
+	        
+	        <Button android:id="@+id/timePickerButton2"
+				android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/timerTitle"
+	            android:layout_toRightOf="@id/timePickerButton1" />
+	        
+	        <Button android:id="@+id/addTimer"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:layout_margin="5dp"
+        		android:layout_centerHorizontal="true"
+        		android:textSize="20dp"
+        		android:layout_below="@id/timerTitle"
+        		android:layout_toRightOf="@id/timePickerButton2"
+        		android:text="@string/plus" />
+	        
+	        <RelativeLayout android:id="@+id/timerText"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" 
+		        android:layout_below="@id/timePickerButton1"
+		        android:layout_margin="10dp" >
+	            
+	            
+	        </RelativeLayout>
+		    
+	    </RelativeLayout>
+	    
+	    <Button android:id="@+id/next3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@id/timerLayout"
+        android:text="@string/next" />
+	    
+	
+	</RelativeLayout>
+
+</ScrollView>
