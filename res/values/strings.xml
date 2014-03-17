@@ -24,10 +24,10 @@
         <item>Sensors</item>
         <item>Timers</item>
         <item>Graphs:</item>
-        <item>->Air Temp Graph</item>
-        <item>->Ph Graph</item>
-        <item>->Humidity Graph</item>
-        <item>->Water Temp Graph</item>
+        <item>Air Temp Graph</item>
+        <item>Ph Graph</item>
+        <item>Humidity Graph</item>
+        <item>Water Temp Graph</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
