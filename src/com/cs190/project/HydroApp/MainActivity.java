@@ -16,6 +16,9 @@
 
 package com.cs190.project.HydroApp;
 
+import io.socket.CustomCallback;
+import io.socket.SocketIO;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -31,24 +34,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.cs190.project.navigationdrawerexample.LoginWindow;
 import com.example.android.navigationdrawerexample.R;
-//import com.example.graphhydrapp.Graph;
-//import com.example.graphhydrapp.Graph;
-//import com.example.graphhydrapp.LightGraphFragment;
-import com.example.graphhydrapp.PhGraphFragment;
-import com.example.graphhydrapp.HumidityGraphFragment;
-//import com.example.graphhydrapp.PowerGraph;
-import com.example.graphhydrapp.PowerGraphFragment;
-import com.example.graphhydrapp.TempGraphFragment;
-import com.example.graphhydrapp.WaterGraphFragment;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.cs190.project.HydroApp.TimerFragment;
 
-import io.socket.CustomCallback;
-import io.socket.SocketIO;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -62,26 +49,36 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.app.ListFragment;
-//import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
-//import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.graphhydrapp.HumidityGraphFragment;
+import com.example.graphhydrapp.PhGraphFragment;
+import com.example.graphhydrapp.TempGraphFragment;
+import com.example.graphhydrapp.WaterGraphFragment;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+//import com.example.graphhydrapp.Graph;
+//import com.example.graphhydrapp.Graph;
+//import com.example.graphhydrapp.LightGraphFragment;
+//import com.example.graphhydrapp.PowerGraph;
+//import android.support.v4.app.FragmentActivity;
+//import android.view.LayoutInflater;
+//import android.view.ViewGroup;
 //import android.widget.TextView;
-import android.widget.ToggleButton;
 
 
 public class MainActivity extends Activity {
@@ -649,5 +646,16 @@ public class MainActivity extends Activity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
     
- 
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance(this).activityStop(this);
+    }
+    
 }

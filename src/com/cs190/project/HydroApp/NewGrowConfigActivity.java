@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import com.cs190.project.UserConfiguration.Stage;
 import com.cs190.project.navigationdrawerexample.LoginWindow;
 import com.example.android.navigationdrawerexample.R;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class NewGrowConfigActivity extends FragmentActivity {
 	
@@ -29,5 +30,17 @@ public class NewGrowConfigActivity extends FragmentActivity {
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
+	
+	@Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance(this).activityStop(this);
+    }
 
 }
