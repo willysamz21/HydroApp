@@ -48,9 +48,7 @@ public class SensorFragment extends ListFragment{
 		DecimalFormat df = new DecimalFormat("####0.00");
 		Double d=0.0; 
 		if(air != null){
-
-			d = Double.parseDouble(air);
-			d = ((d*9)/5)+32;
+			d = Double.parseDouble(air);	
 			air = df.format(d);
 		}
 

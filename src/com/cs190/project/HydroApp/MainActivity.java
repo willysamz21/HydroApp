@@ -412,7 +412,7 @@ public class MainActivity extends Activity {
     private void sendRegistrationIdToBackend() {
     	try {
     	    HttpClient client = new DefaultHttpClient();  
-    	    String getURL = "http://192.168.2.2:3000/reqid/"+regid;
+    	    String getURL = "http://132.239.95.181:4000/reqid/"+regid;
     	    HttpGet get = new HttpGet(getURL);
     	    HttpResponse responseGet = client.execute(get);  
     	    HttpEntity resEntityGet = responseGet.getEntity();  
